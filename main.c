@@ -1,5 +1,6 @@
 #define WIN_WIDTH 640
 #define WIN_HEIGHT 480
+#define WIN_MID 240
 #define TEX_WIDTH 64
 #define TEX_HEIGHT 64
 
