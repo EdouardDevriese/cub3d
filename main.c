@@ -8,6 +8,12 @@
 
 typedef enum e_orientation { NO, SO, WE, EA } t_orientation;
 
+typedef struct s_player_init {
+  int posX;
+  int posY;
+  t_orientation dir;
+} t_player_init;
+
 // pos: vector of the player
 // dir: vector of player direction
 // plane: vector of camera plane
@@ -24,7 +30,6 @@ typedef struct s_player {
   t_orientation orientation;
 } t_player;
 
-//
 typedef struct s_ray {
   double cameraX;
   double rayDirX;
@@ -57,6 +62,41 @@ typedef struct s_frame {
   double curTime;
   double prevTime;
 } t_frame;
+
+void set_dir(t_player *p, double dirX, double dirY) {
+  p->dirX = dirX;
+  p->dirY = dirY;
+}
+
+void set_plane(t_player *p, double planeX, double planeY) {
+  p->planeX = planeX;
+  p->planeY = planeY;
+}
+
+void player_init(t_player *p, t_player_init i) {
+  p->posX = (double)i.posX;
+  p->posY = (double)i.posY;
+  if (i.dir == NO)
+  {
+    set_dir(p, 0, 1);
+    set_plane(p, 0.66, 0);
+  }
+  else if (i.dir == EA)
+  {
+    set_dir(p, 1, 0);
+    set_plane(p, 0, -0.66);
+  }
+  else if (i.dir == SO)
+  {
+    set_dir(p, 0, -1);
+    set_plane(p, -0.66, 0);
+  }
+  else if (i.dir == WE)
+  {
+    set_dir(p, -1, 0);
+    set_plane(p, 0, 0.66);
+  }
+}
 
 // cameraX: x coordinate on plane that represents current x on window (left =
 // -1, middle = 0, right = 1) adding player dir vector and plane vector adjusted
@@ -109,7 +149,7 @@ void calc_initial_side_dist(t_ray *r, t_player p) {
 // jump to the next square border in the ray's path
 // determine how this border is orientated (NO, EA, SO, WE)
 // check if square is full or empty
-void jump_to_next_square(t_ray *r, int map[10][10]) {
+void jump_to_next_square(t_ray *r, int **map) {
   r->hit = 0;
   while (r->hit == 0) {
     if (r->sideDistX < r->sideDistY) {
@@ -150,30 +190,29 @@ void calc_line_to_draw(t_ray *r, t_drawing *d) {
     d->drawEnd = WIN_HEIGHT - 1;
 }
 
-int main() {
-  int map[10][10] = {
-      {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-      {1, 0, 1, 1, 0, 0, 1, 1, 0, 1}, {1, 0, 1, 1, 0, 0, 1, 1, 0, 1},
-      {1, 0, 0, 0, 0, 0, 0, 0, 0, 1}, {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-      {1, 0, 1, 1, 0, 0, 1, 1, 0, 1}, {1, 0, 1, 1, 0, 0, 1, 1, 0, 1},
-      {1, 0, 0, 0, 0, 0, 0, 0, 0, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
+//wallX: exact location of where ray hits the wall
+//texX: x-coordinate of texture we want to draw, based on wallX
+void calc_texture_x(t_ray r, t_player p, t_drawing *d) {
+      if (r.side == 0)
+        d->wallX = p.posY + r.perpWallDist * r.rayDirY;
+      else
+        d->wallX = p.posX + r.perpWallDist * r.rayDirX;
+      d->wallX -= floor(d->wallX);
+      d->texX = (int)(d->wallX * (double)TEX_WIDTH);
+      if (r.side == 0 && r.rayDirX > 0)
+        d->texX = TEX_WIDTH - d->texX - 1;
+      if (r.side == 1 && r.rayDirY < 0)
+        d->texX = TEX_WIDTH - d->texX - 1;
+}
 
+int main() {
+  int **map;
+  t_player_init i;
   t_player p;
-  t_frame f;
   t_ray r;
   t_drawing d;
   int x;
   int y;
-
-  p.posX = 5;
-  p.posY = 5;
-  p.dirX = -1;
-  p.dirY = 0;
-  p.planeX = 0;
-  p.planeY = 0.66;
-
-  f.curTime = 0;
-  f.prevTime = 0;
 
   while (1) {
 
@@ -185,22 +224,11 @@ int main() {
       calc_initial_side_dist(&r, p);
       jump_to_next_square(&r, map);
       calc_line_to_draw(&r, &d);
+      calc_texture_x(r, p, &d);
 
       // TODO: Now loop over all y's to put the right pixel, ask Victor how to
       // extract pixel from texture
 
-      // if (r.side == 0)
-      //   d.wallX = p.posY + r.perpWallDist * r.rayDirY;
-      // else
-      //   d.wallX = p.posX + r.perpWallDist * r.rayDirX;
-      // d.wallX -= floor(d.wallX);
-
-      // // x coordinate on the texture
-      // d.texX = (int)(d.wallX * (double)TEX_WIDTH);
-      // if (r.side == 0 && r.rayDirX > 0)
-      //   d.texX = TEX_WIDTH - d.texX - 1;
-      // if (r.side == 1 && r.rayDirY < 0)
-      //   d.texX = TEX_WIDTH - d.texX - 1;
 
       x++;
     }
