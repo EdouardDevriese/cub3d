@@ -66,4 +66,13 @@ typedef struct s_frame {
   double prevTime;
 } t_frame;
 
+
+void player_init(t_player *p, t_player_init i);
+void generate_ray(int x, t_ray *r, t_player *p);
+void calc_delta_dist(t_ray *r);
+void calc_initial_side_dist(t_ray *r, t_player p);
+void jump_to_next_square(t_ray *r, int **map);
+void calc_line_to_draw(t_ray *r, t_drawing *d);
+void calc_texture_x(t_ray r, t_player p, t_drawing *d);
+
 #endif
