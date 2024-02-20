@@ -8,6 +8,12 @@
 
 typedef enum e_orientation { NO, SO, WE, EA } t_orientation;
 
+//pos: vector of the player
+//dir: vector of player direction
+//plane: vector of camera plane
+//->set plane perpendicular to dir
+//->plane to dir ratio determines FOV
+//orientation: easier for setup, will determine dir vector
 typedef struct s_player {
   double posY;
   double posX;
@@ -15,13 +21,10 @@ typedef struct s_player {
   double dirX;
   double planeX;
   double planeY;
+  t_orientation orientation;
 } t_player;
 
-typedef struct s_frame {
-  double curTime;
-  double prevTime;
-} t_frame;
-
+//
 typedef struct s_ray {
   double cameraX;
   double rayDirX;
@@ -47,6 +50,59 @@ typedef struct s_drawing {
   double wallX;
   int texX;
 } t_drawing;
+
+//curTime: time of current frame
+//prevTime: time of previous frame
+typedef struct s_frame {
+  double curTime;
+  double prevTime;
+} t_frame;
+
+
+//cameraX: x coordinate on plane that represents current x on window (left = -1, middle = 0, right = 1)
+//adding player dir vector and plane vector adjusted for cameraX results in vector of the ray
+void generate_ray(int x, t_ray *r, t_player *p) {
+  r->cameraX = 2 * x / (double)WIN_WIDTH - 1;
+  r->rayDirX = p->dirX + p->planeX * r->cameraX;
+  r->rayDirY = p->dirY + p->planeY * r->cameraX;
+}
+
+//deltaDistX: distance ray has to travel to go from one x-side of map square to the next
+//deltaDistY: distance ray has to travel to go from one y-side of map square to the next
+void calc_delta_dist(t_ray *r) {
+      if (r->rayDirX == 0) {
+        r->deltaDistX = INFINITY;
+      } else {
+        r->deltaDistX = fabs(1 / r->rayDirX);
+      }
+      if (r->rayDirY == 0) {
+        r->deltaDistY = INFINITY;
+      } else {
+        r->deltaDistY = fabs(1 / r->rayDirY);
+      }
+}
+
+//map: coordinates of square ray is currently in
+//sideDistX: distance ray has to travel to first next x-side of map square
+//sideDistY: distance ray has to travel to first next y-side of map square
+void calc_initial_side_dist(t_ray *r, t_player p) {
+      r->mapX = (int)p.posX;
+      r->mapY = (int)p.posY;
+      if (r->rayDirX < 0) {
+        r->stepX = -1;
+        r->sideDistX = (p.posX - r->mapX) * r->deltaDistX;
+      } else {
+        r->stepX = 1;
+        r->sideDistX = (r->mapX + 1.0 - p.posX) * r->deltaDistX;
+      }
+      if (r->rayDirY < 0) {
+        r->stepY = -1;
+        r->sideDistY = (p.posY - r->mapY) * r->deltaDistY;
+      } else {
+        r->stepY = 1;
+        r->sideDistY = (r->mapY + 1.0 - p.posY) * r->deltaDistY;
+      }
+}
 
 int main() {
   int map[10][10] = {
@@ -74,42 +130,14 @@ int main() {
   f.prevTime = 0;
 
   while (1) {
-    // for every x in the screenwidht, so 640 columns
+
+    //raycasting loops over every x of the screen -> one calculation per column
     int x = 0;
     while (x < WIN_WIDTH) {
-      // generate rays
-      r.cameraX = 2 * x / (double)WIN_WIDTH - 1;
-      r.rayDirX = p.dirX + p.planeX * r.cameraX;
-      r.rayDirY = p.dirY + p.planeY * r.cameraX;
 
-      r.mapX = (int)p.posX;
-      r.mapY = (int)p.posY;
-
-      if (r.rayDirX == 0) {
-        r.deltaDistX = INFINITY;
-      } else {
-        r.deltaDistX = fabs(1 / r.rayDirX);
-      }
-      if (r.rayDirY == 0) {
-        r.deltaDistY = INFINITY;
-      } else {
-        r.deltaDistY = fabs(1 / r.rayDirY);
-      }
-
-      if (r.rayDirX < 0) {
-        r.stepX = -1;
-        r.sideDistX = (p.posX - r.mapX) * r.deltaDistX;
-      } else {
-        r.stepX = 1;
-        r.sideDistX = (r.mapX + 1.0 - p.posX) * r.deltaDistX;
-      }
-      if (r.rayDirY < 0) {
-        r.stepY = -1;
-        r.sideDistY = (p.posY - r.mapY) * r.deltaDistY;
-      } else {
-        r.stepY = 1;
-        r.sideDistY = (r.mapY + 1.0 - p.posY) * r.deltaDistY;
-      }
+      generate_ray(x, &r, &p);
+      calc_delta_dist(&r);
+      calc_initial_side_dist(&r, p);
 
       // perform DDA
       while (r.hit == 0) {
