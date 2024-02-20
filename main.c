@@ -73,6 +73,9 @@ void set_plane(t_player *p, double planeX, double planeY) {
   p->planeY = planeY;
 }
 
+//sets vectors for pos, dir and plane
+//dir is just vector up/right/down/left for north/east/south/west
+//plane is vector perpendicular to dir, with plane/dir ratio for FOV of 66 degrees
 void player_init(t_player *p, t_player_init i) {
   p->posX = (double)i.posX;
   p->posY = (double)i.posY;
