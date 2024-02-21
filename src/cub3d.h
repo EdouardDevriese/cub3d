@@ -8,6 +8,7 @@
 #define TEX_HEIGHT 64
 
 #include <math.h>
+#include <cstdint>
 
 typedef enum e_orientation { NO, SO, WE, EA } t_orientation;
 
@@ -52,11 +53,17 @@ typedef struct s_ray {
 } t_ray;
 
 typedef struct s_drawing {
+  int x;
+  int y;
   int lineHeight;
   int drawStart;
   int drawEnd;
   double wallX;
   int texX;
+  int texY;
+  double texPos;
+  double step;
+  int32_t color;
 } t_drawing;
 
 // curTime: time of current frame
@@ -68,10 +75,10 @@ typedef struct s_frame {
 
 
 void player_init(t_player *p, t_player_init i);
-void generate_ray(int x, t_ray *r, t_player *p);
+void calc_ray(int x, t_ray *r, t_player *p);
 void calc_delta_dist(t_ray *r);
-void calc_initial_side_dist(t_ray *r, t_player p);
-void jump_to_next_square(t_ray *r, int **map);
+void calc_side_dist(t_ray *r, t_player p);
+void perform_dda(t_ray *r, int **map);
 void calc_line_to_draw(t_ray *r, t_drawing *d);
 void calc_texture_x(t_ray r, t_player p, t_drawing *d);
 

@@ -3,7 +3,7 @@
 // cameraX: x coordinate on plane that represents current x on window (left =
 // -1, middle = 0, right = 1) adding player dir vector and plane vector adjusted
 // for cameraX results in vector of the ray
-void generate_ray(int x, t_ray *r, t_player *p) {
+void calc_ray(int x, t_ray *r, t_player *p) {
   r->cameraX = 2 * x / (double)WIN_WIDTH - 1;
   r->rayDirX = p->dirX + p->planeX * r->cameraX;
   r->rayDirY = p->dirY + p->planeY * r->cameraX;
@@ -29,7 +29,7 @@ void calc_delta_dist(t_ray *r) {
 // sideDistX: distance ray has to travel to first next x-side of map square
 // sideDistY: distance ray has to travel to first next y-side of map square
 // step: sets possible directions for jump to next square (next step)
-void calc_initial_side_dist(t_ray *r, t_player p) {
+void calc_side_dist(t_ray *r, t_player p) {
   r->mapX = (int)p.posX;
   r->mapY = (int)p.posY;
   if (r->rayDirX < 0) {
@@ -51,7 +51,7 @@ void calc_initial_side_dist(t_ray *r, t_player p) {
 // jump to the next square border in the ray's path
 // determine how this border is orientated (NO, EA, SO, WE)
 // check if square is full or empty
-void jump_to_next_square(t_ray *r, int **map) {
+void perform_dda(t_ray *r, int **map) {
   r->hit = 0;
   while (r->hit == 0) {
     if (r->sideDistX < r->sideDistY) {
@@ -91,4 +91,3 @@ void calc_line_to_draw(t_ray *r, t_drawing *d) {
   if (d->drawEnd >= WIN_HEIGHT)
     d->drawEnd = WIN_HEIGHT - 1;
 }
-

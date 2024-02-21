@@ -11,14 +11,12 @@ int main() {
   int y;
 
   while (1) {
-
-    // raycasting loops over every x of the screen -> one calculation per column
-    int x = 0;
-    while (x < WIN_WIDTH) {
-      generate_ray(x, &r, &p);
+    d.x = 0;
+    while (d.x < WIN_WIDTH) {
+      calc_ray(x, &r, &p);
       calc_delta_dist(&r);
-      calc_initial_side_dist(&r, p);
-      jump_to_next_square(&r, map);
+      calc_side_dist(&r, p);
+      perform_dda(&r, map);
       calc_line_to_draw(&r, &d);
       calc_texture_x(r, p, &d);
 
@@ -26,7 +24,7 @@ int main() {
       // extract pixel from texture
 
 
-      x++;
+      d.x++;
     }
   }
   return 0;
