@@ -1,5 +1,5 @@
 #ifndef CUB3D_H
-# define CUB3D_H
+#define CUB3D_H
 
 #define WIN_WIDTH 640
 #define WIN_HEIGHT 480
@@ -7,8 +7,10 @@
 #define TEX_WIDTH 64
 #define TEX_HEIGHT 64
 
+# include "../minilibx-linux/mlx.h"
+# include "../libft/inc/libft.h"
+#include <stdint.h>
 #include <math.h>
-#include <cstdint>
 
 typedef enum e_orientation { NO, SO, WE, EA } t_orientation;
 
@@ -64,6 +66,9 @@ typedef struct s_drawing {
   double texPos;
   double step;
   int32_t color;
+  void **tex;
+  int32_t ceiling;
+  int32_t floor;
 } t_drawing;
 
 // curTime: time of current frame
@@ -73,6 +78,15 @@ typedef struct s_frame {
   double prevTime;
 } t_frame;
 
+typedef struct s_mlx {
+  void *mlx_ptr;
+  void *win_ptr;
+  void *img;
+  char *addr;
+  int bits_per_pixel;
+  int line_length;
+  int endian;
+} t_mlx;
 
 void player_init(t_player *p, t_player_init i);
 void calc_ray(int x, t_ray *r, t_player *p);
@@ -81,5 +95,7 @@ void calc_side_dist(t_ray *r, t_player p);
 void perform_dda(t_ray *r, int **map);
 void calc_line_to_draw(t_ray *r, t_drawing *d);
 void calc_texture_x(t_ray r, t_player p, t_drawing *d);
+void draw_line(t_drawing d, t_ray r, t_mlx m);
+void draw_ceiling_floor(t_drawing d, t_mlx m);
 
 #endif

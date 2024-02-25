@@ -22,17 +22,17 @@ void draw_line(t_drawing d, t_ray r, t_mlx m) {
   while (d.y < d.drawEnd) {
     d.texY = (int)d.texPos & (TEX_HEIGHT - 1);
     d.texPos += d.step;
-    d.color = m.texture[r.orientation][TEX_HEIGHT * d.texY + d.texX];
-    mlximgaddres[d.y * WIN_WIDTH + d.x] = d.color;
+    d.color = d.tex[r.orientation][TEX_HEIGHT * d.texY + d.texX];
+    m.addr[d.y * WIN_WIDTH + d.x] = d.color;
     d.y++;
   }
 }
 
 void draw_ceiling_floor(t_drawing d, t_mlx m) {
   d.y = 0;
-  while(d.y < d.drawStart && y < WIN_MID)
-    mlximgaddres[d.y * WIN_WIDTH + d.x] = m.ceiling;
+  while(d.y < d.drawStart && d.y < WIN_MID)
+    m.addr[d.y * WIN_WIDTH + d.x] = m.ceiling;
   d.y = d.drawEnd;
   while (d.y < WIN_HEIGHT)
-    mlximgaddres[d.y * WIN_WIDTH + d.x] = m.floor;
+    m.addr[d.y * WIN_WIDTH + d.x] = m.floor;
 } 
