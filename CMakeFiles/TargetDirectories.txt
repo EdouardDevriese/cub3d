@@ -1,0 +1,5 @@
+/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles/rebuild_cache.dir
+/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles/edit_cache.dir
+/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles/re.dir
+/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles/fclean.dir
+/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles/my_app.dir
