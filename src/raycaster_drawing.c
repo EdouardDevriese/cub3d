@@ -22,8 +22,8 @@ void draw_line(t_drawing d, t_ray r, t_mlx m) {
   while (d.y < d.drawEnd) {
     d.texY = (int)d.texPos & (TEX_HEIGHT - 1);
     d.texPos += d.step;
-    d.color = d.tex[r.orientation][TEX_HEIGHT * d.texY + d.texX];
-    m.addr[d.y * WIN_WIDTH + d.x] = d.color;
+    d.pixel = d.tex[r.orientation][TEX_HEIGHT * d.texY + d.texX];
+    m.addr[d.y * WIN_WIDTH + d.x] = d.pixel;
     d.y++;
   }
 }

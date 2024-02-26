@@ -67,7 +67,7 @@ typedef struct s_drawing {
   int texY;
   double texPos;
   double step;
-  int32_t color;
+  int32_t pixel;
   void *tex[4];
   int32_t ceiling;
   int32_t floor;

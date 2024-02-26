@@ -26,8 +26,6 @@ int main() {
   t_ray r;
   t_drawing d;
   t_mlx m;
-  int x;
-  int y;
 
   //@victor
   // fill in t_player_init i, pass it to player_init.
@@ -44,7 +42,7 @@ int main() {
 
   d.x = 0;
   while (d.x < WIN_WIDTH) {
-    calc_ray(x, &r, &p);
+    calc_ray(d.x, &r, &p);
     calc_delta_dist(&r);
     calc_side_dist(&r, p);
     perform_dda(&r, map);
