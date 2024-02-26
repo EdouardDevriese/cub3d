@@ -1,4 +1,4 @@
-#include "../libft/inc/libft.h"
+#include "cub3d.h"
 #include <stdbool.h>
 
 int	is_map(char *str)
@@ -46,7 +46,7 @@ int	get_dimensions(char *map_src, int *x, int *y)
 		return (1);
 	while (new_read != NULL)
 	{
-		if (ft_strlen(new_read) > *x)
+		if (ft_strlen(new_read) > (size_t)*x)
 			*x = ft_strlen(new_read);
 		(*y)++;
 		free(new_read);
@@ -61,7 +61,7 @@ int	get_dimensions(char *map_src, int *x, int *y)
  * need to make function that somehow skips all first non map lines
  */
 
-int	malloc_map(char ***map, int x, int y)
+int	malloc_map(char ***map, int y)
 {
 	char	**new_map;
 	int		iter;
@@ -71,30 +71,11 @@ int	malloc_map(char ***map, int x, int y)
 	new_map = (char **)ft_calloc((y + 1) , sizeof(char *));
 	if (!map)
 		return (1);
-	new_map[y] = NULL;
 	*map = new_map;
 	return (1);
 }
 
-int	line_to_map(char **map, char *new_read, int y, int max_x)
-{
-	int	x;
-	int	len;
-
-	len = ft_strlen(new_read);
-	x = 0;
-	while (x < max_x)
-	{
-		if (x >= len - 1 || new_read[x] == ' ')
-			map[y][x] = ' ';
-		else
-			map[y][x] = new_read[x];
-		x++;
-	}
-	return (0);
-}
-
-int	map_to_map(char **map, char *map_src, int x, int y)
+int	map_to_map(char **map, char *map_src, int y)
 {
 	int		fd;
 	char	*new_read;
@@ -104,10 +85,9 @@ int	map_to_map(char **map, char *map_src, int x, int y)
 	new_read = get_fd(map_src, &fd);
 	if (!new_read)
 		return (1);
-	while (new_read != NULL)
+	while (new_read != NULL && line <= y)
 	{
-		line_to_map(map, new_read, line, x);
-		free(new_read);
+		map[line] = new_read;
 		new_read = get_next_line(fd);
 		line++;
 	}
@@ -122,19 +102,59 @@ void	print_map(char **map)
 {
 	while (*map)
 	{
-		ft_putendl_fd(*map, 1);
+		ft_putstr_fd(*map, 1);
 		map++;
 	}
 }
-int	main(void)
+
+void	get_player_info(t_player_init *i, char **map)
+{
+	int index = 0;
+	char *result;
+
+	result = NULL;
+	while (map[index] && !result)
+	{
+		result = strchr(map[index],'N');
+		i->dir = NO;
+		if (!result)
+		{
+			result = strchr(map[index],'E');
+			i->dir = EA;
+		}
+		if (!result)
+		{
+			result = strchr(map[index],'S');
+			i->dir = SO;
+		}
+		if (!result)
+		{
+			result = strchr(map[index],'W');
+			i->dir = WE;
+		}
+		if (!result)
+			index++;
+	}
+	i->posY = index;
+	i->posX = result - map[index];
+}
+
+int	data_init(t_player_init *i, char ***map_src)
 {
 	int x, y;
 	char **map;
-	char *map_src = "map.txt";
+	char *map_file = "maps/map.txt";
 	
-	get_dimensions(map_src, &x, &y);
-	printf("x [%i] ; y [%i]", x, y);
-	malloc_map(&map, x, y);
-	map_to_map(map, map_src, x, y);
-	print_map(map);
+	get_dimensions(map_file, &x, &y);
+	malloc_map(&map, y);
+	map_to_map(map, map_file, y);
+
+
+	get_player_info(i, map);
+
+	*map_src = map;
+
+	return (0);
 }
+//map is forced path atm
+//still need to add textures

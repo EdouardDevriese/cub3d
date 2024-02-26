@@ -93,4 +93,7 @@ void calc_texture_x(t_ray r, t_player p, t_drawing *d);
 void draw_line(t_drawing d, t_ray r, t_mlx m);
 void draw_ceiling_floor(t_drawing d, t_mlx m);
 
+
+int	data_init();
+
 #endif

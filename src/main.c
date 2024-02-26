@@ -32,7 +32,7 @@ int main() {
   //@victor
   // fill in t_player_init i, pass it to player_init.
   // fill in textures in t_drawing void *tex[4]
-
+	data_init(&i, &map);
   player_init(&p, i);
   m.mlx_ptr = mlx_init();
   m.win_ptr = mlx_new_window(m.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "deez cubez");
@@ -45,7 +45,7 @@ int main() {
   d.x = 0;
   while (d.x < WIN_WIDTH) {
     calc_ray(x, &r, &p);
-    calc_delta_dist(&r);
+	calc_delta_dist(&r);
     calc_side_dist(&r, p);
     perform_dda(&r, map);
     calc_line_to_draw(&r, &d);
