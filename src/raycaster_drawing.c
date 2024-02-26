@@ -31,8 +31,8 @@ void draw_line(t_drawing d, t_ray r, t_mlx m) {
 void draw_ceiling_floor(t_drawing d, t_mlx m) {
   d.y = 0;
   while(d.y < d.drawStart && d.y < WIN_MID)
-    m.addr[d.y * WIN_WIDTH + d.x] = m.ceiling;
+    m.addr[d.y * WIN_WIDTH + d.x] = d.ceiling;
   d.y = d.drawEnd;
   while (d.y < WIN_HEIGHT)
-    m.addr[d.y * WIN_WIDTH + d.x] = m.floor;
+    m.addr[d.y * WIN_WIDTH + d.x] = d.floor;
 } 

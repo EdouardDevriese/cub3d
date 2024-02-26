@@ -1,4 +1,5 @@
 #include "cub3d.h"
+#include <stdint.h>
 
 int ft_close_window(t_mlx *mlx) {
   mlx_destroy_image(mlx->mlx_ptr, mlx->img);
@@ -14,6 +15,10 @@ int ft_escape(int keycode, t_mlx *mlx) {
   return (0);
 }
 
+int32_t rgb_to_int(int r, int g, int b) {
+  return ((r << 16) | (g << 8) | b);
+}
+
 int main() {
   char **map;
   t_player_init i;
@@ -24,7 +29,10 @@ int main() {
   int x;
   int y;
 
-  //@victor, fill in t_player_init i, pass it to player_init.
+  //@victor
+  // fill in t_player_init i, pass it to player_init.
+  // fill in textures in t_drawing void *tex[4]
+
   player_init(&p, i);
   m.mlx_ptr = mlx_init();
   m.win_ptr = mlx_new_window(m.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "deez cubez");
