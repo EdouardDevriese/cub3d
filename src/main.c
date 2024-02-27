@@ -26,8 +26,9 @@ int main() {
   t_ray r;
   t_drawing d;
   t_mlx m;
-  int x;
+  int x = 0;
   int y;
+  (void)y;
 
   //@victor
   // fill in t_player_init i, pass it to player_init.
@@ -39,6 +40,8 @@ int main() {
   m.img = mlx_new_image(m.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
   m.addr =
       mlx_get_data_addr(m.img, &m.bits_per_pixel, &m.line_length, &m.endian);
+// put iomages here
+	get_draw_info(&d, m.mlx_ptr);
   mlx_hook(m.win_ptr, 17, 0L, ft_close_window, &m);
   mlx_key_hook(m.win_ptr, ft_escape, &m);
 

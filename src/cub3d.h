@@ -95,5 +95,7 @@ void draw_ceiling_floor(t_drawing d, t_mlx m);
 
 
 int	data_init();
+int	is_map(char *str);
+int get_draw_info(t_drawing *d, void *mlx);
 
 #endif
