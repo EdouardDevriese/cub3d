@@ -6,8 +6,8 @@
 #define WIN_MID 240
 #define TEX_WIDTH 64
 #define TEX_HEIGHT 64
-#define MOVE_SPEED 60
-#define ROT_SPEED 40
+#define MOVE_SPEED 0.012
+#define ROT_SPEED 0.015
 
 #include "../libft/inc/libft.h"
 #include "../minilibx-linux/mlx.h"
