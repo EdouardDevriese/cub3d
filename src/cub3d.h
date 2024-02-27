@@ -94,6 +94,6 @@ void draw_line(t_drawing d, t_ray r, t_mlx m);
 void draw_ceiling_floor(t_drawing d, t_mlx m);
 
 
-int	data_init();
+int	data_init(t_player_init *i, char ***map);
 
 #endif
