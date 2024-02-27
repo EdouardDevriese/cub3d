@@ -106,6 +106,8 @@ void	rot_left(t_player *p);
 void	rot_right(t_player *p);
 
 
+int	is_map(char *str);
+int get_draw_info(t_drawing *d, void *mlx);
 int	data_init(t_player_init *i, char ***map);
 
 #endif
