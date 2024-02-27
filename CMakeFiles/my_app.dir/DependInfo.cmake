@@ -4,7 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/nfs/homes/vdenisse/Documents/git_collection/Cub3d/main.c" "/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles/my_app.dir/main.c.o"
+  "/nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/images.c" "/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles/my_app.dir/src/images.c.o"
+  "/nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/main.c" "/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles/my_app.dir/src/main.c.o"
+  "/nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/mlx_test.c" "/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles/my_app.dir/src/mlx_test.c.o"
+  "/nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/parsing.c" "/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles/my_app.dir/src/parsing.c.o"
+  "/nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/player_init.c" "/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles/my_app.dir/src/player_init.c.o"
+  "/nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/player_movements.c" "/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles/my_app.dir/src/player_movements.c.o"
+  "/nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/raycaster_drawing.c" "/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles/my_app.dir/src/raycaster_drawing.c.o"
+  "/nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/raycaster_prep.c" "/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles/my_app.dir/src/raycaster_prep.c.o"
   )
 set(CMAKE_C_COMPILER_ID "Clang")
 

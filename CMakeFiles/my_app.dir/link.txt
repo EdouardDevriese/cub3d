@@ -1,1 +1,1 @@
-/usr/bin/cc    CMakeFiles/my_app.dir/main.c.o  -o my_app 
+/usr/bin/cc   -lm -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lz CMakeFiles/my_app.dir/src/images.c.o CMakeFiles/my_app.dir/src/main.c.o CMakeFiles/my_app.dir/src/mlx_test.c.o CMakeFiles/my_app.dir/src/parsing.c.o CMakeFiles/my_app.dir/src/player_init.c.o CMakeFiles/my_app.dir/src/player_movements.c.o CMakeFiles/my_app.dir/src/raycaster_drawing.c.o CMakeFiles/my_app.dir/src/raycaster_prep.c.o  -o my_app  libft/libft.a mlx_linux/libmlx_Linux.a 

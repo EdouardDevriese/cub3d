@@ -130,12 +130,12 @@ CMakeFiles/fclean.dir/clean:
 CMakeFiles/my_app.dir/all:
 	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/depend
 	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles --progress-num=1,2 "Built target my_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9 "Built target my_app"
 .PHONY : CMakeFiles/my_app.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/my_app.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles 9
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/my_app.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles 0
 .PHONY : CMakeFiles/my_app.dir/rule

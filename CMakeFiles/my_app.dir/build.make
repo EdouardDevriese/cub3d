@@ -57,30 +57,137 @@ include CMakeFiles/my_app.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/my_app.dir/flags.make
 
-CMakeFiles/my_app.dir/main.c.o: CMakeFiles/my_app.dir/flags.make
-CMakeFiles/my_app.dir/main.c.o: main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/my_app.dir/main.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/my_app.dir/main.c.o   -c /nfs/homes/vdenisse/Documents/git_collection/Cub3d/main.c
+CMakeFiles/my_app.dir/src/images.c.o: CMakeFiles/my_app.dir/flags.make
+CMakeFiles/my_app.dir/src/images.c.o: src/images.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/my_app.dir/src/images.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/my_app.dir/src/images.c.o   -c /nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/images.c
 
-CMakeFiles/my_app.dir/main.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/my_app.dir/main.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /nfs/homes/vdenisse/Documents/git_collection/Cub3d/main.c > CMakeFiles/my_app.dir/main.c.i
+CMakeFiles/my_app.dir/src/images.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/my_app.dir/src/images.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/images.c > CMakeFiles/my_app.dir/src/images.c.i
 
-CMakeFiles/my_app.dir/main.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/my_app.dir/main.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /nfs/homes/vdenisse/Documents/git_collection/Cub3d/main.c -o CMakeFiles/my_app.dir/main.c.s
+CMakeFiles/my_app.dir/src/images.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/my_app.dir/src/images.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/images.c -o CMakeFiles/my_app.dir/src/images.c.s
+
+CMakeFiles/my_app.dir/src/main.c.o: CMakeFiles/my_app.dir/flags.make
+CMakeFiles/my_app.dir/src/main.c.o: src/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/my_app.dir/src/main.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/my_app.dir/src/main.c.o   -c /nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/main.c
+
+CMakeFiles/my_app.dir/src/main.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/my_app.dir/src/main.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/main.c > CMakeFiles/my_app.dir/src/main.c.i
+
+CMakeFiles/my_app.dir/src/main.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/my_app.dir/src/main.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/main.c -o CMakeFiles/my_app.dir/src/main.c.s
+
+CMakeFiles/my_app.dir/src/mlx_test.c.o: CMakeFiles/my_app.dir/flags.make
+CMakeFiles/my_app.dir/src/mlx_test.c.o: src/mlx_test.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/my_app.dir/src/mlx_test.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/my_app.dir/src/mlx_test.c.o   -c /nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/mlx_test.c
+
+CMakeFiles/my_app.dir/src/mlx_test.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/my_app.dir/src/mlx_test.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/mlx_test.c > CMakeFiles/my_app.dir/src/mlx_test.c.i
+
+CMakeFiles/my_app.dir/src/mlx_test.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/my_app.dir/src/mlx_test.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/mlx_test.c -o CMakeFiles/my_app.dir/src/mlx_test.c.s
+
+CMakeFiles/my_app.dir/src/parsing.c.o: CMakeFiles/my_app.dir/flags.make
+CMakeFiles/my_app.dir/src/parsing.c.o: src/parsing.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/my_app.dir/src/parsing.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/my_app.dir/src/parsing.c.o   -c /nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/parsing.c
+
+CMakeFiles/my_app.dir/src/parsing.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/my_app.dir/src/parsing.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/parsing.c > CMakeFiles/my_app.dir/src/parsing.c.i
+
+CMakeFiles/my_app.dir/src/parsing.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/my_app.dir/src/parsing.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/parsing.c -o CMakeFiles/my_app.dir/src/parsing.c.s
+
+CMakeFiles/my_app.dir/src/player_init.c.o: CMakeFiles/my_app.dir/flags.make
+CMakeFiles/my_app.dir/src/player_init.c.o: src/player_init.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/my_app.dir/src/player_init.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/my_app.dir/src/player_init.c.o   -c /nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/player_init.c
+
+CMakeFiles/my_app.dir/src/player_init.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/my_app.dir/src/player_init.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/player_init.c > CMakeFiles/my_app.dir/src/player_init.c.i
+
+CMakeFiles/my_app.dir/src/player_init.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/my_app.dir/src/player_init.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/player_init.c -o CMakeFiles/my_app.dir/src/player_init.c.s
+
+CMakeFiles/my_app.dir/src/player_movements.c.o: CMakeFiles/my_app.dir/flags.make
+CMakeFiles/my_app.dir/src/player_movements.c.o: src/player_movements.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/my_app.dir/src/player_movements.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/my_app.dir/src/player_movements.c.o   -c /nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/player_movements.c
+
+CMakeFiles/my_app.dir/src/player_movements.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/my_app.dir/src/player_movements.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/player_movements.c > CMakeFiles/my_app.dir/src/player_movements.c.i
+
+CMakeFiles/my_app.dir/src/player_movements.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/my_app.dir/src/player_movements.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/player_movements.c -o CMakeFiles/my_app.dir/src/player_movements.c.s
+
+CMakeFiles/my_app.dir/src/raycaster_drawing.c.o: CMakeFiles/my_app.dir/flags.make
+CMakeFiles/my_app.dir/src/raycaster_drawing.c.o: src/raycaster_drawing.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/my_app.dir/src/raycaster_drawing.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/my_app.dir/src/raycaster_drawing.c.o   -c /nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/raycaster_drawing.c
+
+CMakeFiles/my_app.dir/src/raycaster_drawing.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/my_app.dir/src/raycaster_drawing.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/raycaster_drawing.c > CMakeFiles/my_app.dir/src/raycaster_drawing.c.i
+
+CMakeFiles/my_app.dir/src/raycaster_drawing.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/my_app.dir/src/raycaster_drawing.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/raycaster_drawing.c -o CMakeFiles/my_app.dir/src/raycaster_drawing.c.s
+
+CMakeFiles/my_app.dir/src/raycaster_prep.c.o: CMakeFiles/my_app.dir/flags.make
+CMakeFiles/my_app.dir/src/raycaster_prep.c.o: src/raycaster_prep.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/my_app.dir/src/raycaster_prep.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/my_app.dir/src/raycaster_prep.c.o   -c /nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/raycaster_prep.c
+
+CMakeFiles/my_app.dir/src/raycaster_prep.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/my_app.dir/src/raycaster_prep.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/raycaster_prep.c > CMakeFiles/my_app.dir/src/raycaster_prep.c.i
+
+CMakeFiles/my_app.dir/src/raycaster_prep.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/my_app.dir/src/raycaster_prep.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /nfs/homes/vdenisse/Documents/git_collection/Cub3d/src/raycaster_prep.c -o CMakeFiles/my_app.dir/src/raycaster_prep.c.s
 
 # Object files for target my_app
 my_app_OBJECTS = \
-"CMakeFiles/my_app.dir/main.c.o"
+"CMakeFiles/my_app.dir/src/images.c.o" \
+"CMakeFiles/my_app.dir/src/main.c.o" \
+"CMakeFiles/my_app.dir/src/mlx_test.c.o" \
+"CMakeFiles/my_app.dir/src/parsing.c.o" \
+"CMakeFiles/my_app.dir/src/player_init.c.o" \
+"CMakeFiles/my_app.dir/src/player_movements.c.o" \
+"CMakeFiles/my_app.dir/src/raycaster_drawing.c.o" \
+"CMakeFiles/my_app.dir/src/raycaster_prep.c.o"
 
 # External object files for target my_app
 my_app_EXTERNAL_OBJECTS =
 
-my_app: CMakeFiles/my_app.dir/main.c.o
+my_app: CMakeFiles/my_app.dir/src/images.c.o
+my_app: CMakeFiles/my_app.dir/src/main.c.o
+my_app: CMakeFiles/my_app.dir/src/mlx_test.c.o
+my_app: CMakeFiles/my_app.dir/src/parsing.c.o
+my_app: CMakeFiles/my_app.dir/src/player_init.c.o
+my_app: CMakeFiles/my_app.dir/src/player_movements.c.o
+my_app: CMakeFiles/my_app.dir/src/raycaster_drawing.c.o
+my_app: CMakeFiles/my_app.dir/src/raycaster_prep.c.o
 my_app: CMakeFiles/my_app.dir/build.make
+my_app: libft/libft.a
+my_app: mlx_linux/libmlx_Linux.a
 my_app: CMakeFiles/my_app.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable my_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/nfs/homes/vdenisse/Documents/git_collection/Cub3d/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking C executable my_app"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/my_app.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
