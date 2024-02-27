@@ -10,7 +10,7 @@
 #define ROT_SPEED 40
 
 #include "../libft/inc/libft.h"
-#include "../minilibx-linux/mlx.h"
+#include "../mlx_linux/mlx.h"
 #include <math.h>
 #include <stdint.h>
 

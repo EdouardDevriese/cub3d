@@ -66,7 +66,7 @@ void	calc_side_dist(t_ray *r, t_player p)
 // jump to the next square border in the ray's path
 // determine how this border is orientated (NO, EA, SO, WE)
 // check if square is full or empty
-void	perform_dda(t_ray *r, int **map)
+void	perform_dda(t_ray *r, char **map)
 {
 	r->hit = 0;
 	while (r->hit == 0)
@@ -98,7 +98,7 @@ void	perform_dda(t_ray *r, int **map)
 
 //lineHeight, inverse of distance of the wall (perpWallDist)
 //drawStart/drawEnd: highest and lowest pixels to fill with wall (End
-		- Start = lineHeight)
+//		- Start = lineHeight)
 void	calc_line_to_draw(t_ray *r, t_drawing *d)
 {
 	if (r->side == 0)

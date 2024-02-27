@@ -22,13 +22,11 @@ int	key_hook(int keycode, t_hook_data *h)
 		move_s(h->p, h->map);
 	else if (keycode == 'd' || keycode == 65363)
 		move_d(h->p, h->map);
+	else
+		printf("keycode [%i]\n", keycode);
 	return (0);
 }
 
-int32_t	rgb_to_int(int r, int g, int b)
-{
-	return ((r << 16) | (g << 8) | b);
-}
 
 int	main(void)
 {

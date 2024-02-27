@@ -2,8 +2,8 @@
 #define WIN_HEIGHT 480
 
 #include <stdio.h>
-#include "../minilibx-linux/mlx.h"
-
+#include "../mlx_linux/mlx.h"
+/*
 typedef struct s_mlx {
   void *mlx_ptr;
   void *win_ptr;
@@ -18,6 +18,7 @@ int	key_hook(int keycode, t_mlx *mlx)
 {
 	printf("You pressed a key: %i", keycode);
 	return (0);
+	(void)mlx;
 }
 
 int main()
@@ -32,3 +33,4 @@ int main()
 	mlx_key_hook(m.win_ptr, key_hook, &m);
 	mlx_loop(m.mlx_ptr);
 }
+*/
