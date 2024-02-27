@@ -3,7 +3,7 @@
 
 int	is_map(char *str)
 {
-	bool has_info;
+	bool	has_info;
 
 	has_info = false;
 	while (*str && *str != '\n')
@@ -19,7 +19,7 @@ int	is_map(char *str)
 
 char	*get_fd(char *map_src, int *fd)
 {
-	char *line;
+	char	*line;
 
 	line = 0;
 	*fd = open(map_src, O_RDONLY);
@@ -68,7 +68,7 @@ int	malloc_map(char ***map, int y)
 
 	iter = 0;
 	new_map = *map;
-	new_map = (char **)ft_calloc((y + 1) , sizeof(char *));
+	new_map = (char **)ft_calloc((y + 1), sizeof(char *));
 	if (!map)
 		return (1);
 	*map = new_map;
@@ -109,27 +109,28 @@ void	print_map(char **map)
 
 void	get_player_info(t_player_init *i, char **map)
 {
-	int index = 0;
-	char *result;
+	int		index;
+	char	*result;
 
+	index = 0;
 	result = NULL;
 	while (map[index] && !result)
 	{
-		result = strchr(map[index],'N');
+		result = strchr(map[index], 'N');
 		i->dir = NO;
 		if (!result)
 		{
-			result = strchr(map[index],'E');
+			result = strchr(map[index], 'E');
 			i->dir = EA;
 		}
 		if (!result)
 		{
-			result = strchr(map[index],'S');
+			result = strchr(map[index], 'S');
 			i->dir = SO;
 		}
 		if (!result)
 		{
-			result = strchr(map[index],'W');
+			result = strchr(map[index], 'W');
 			i->dir = WE;
 		}
 		if (!result)
@@ -141,19 +142,16 @@ void	get_player_info(t_player_init *i, char **map)
 
 int	data_init(t_player_init *i, char ***map_src)
 {
+	char	**map;
+	char	*map_file;
+
 	int x, y;
-	char **map;
-	char *map_file = "maps/map.txt";
-	
+	map_file = "maps/map.txt";
 	get_dimensions(map_file, &x, &y);
 	malloc_map(&map, y);
 	map_to_map(map, map_file, y);
-
-
 	get_player_info(i, map);
-
 	*map_src = map;
-
 	return (0);
 }
 //map is forced path atm
