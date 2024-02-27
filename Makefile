@@ -149,32 +149,221 @@ my_app/fast:
 	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/build
 .PHONY : my_app/fast
 
-main.o: main.c.o
+src/images.o: src/images.c.o
 
-.PHONY : main.o
+.PHONY : src/images.o
 
 # target to build an object file
-main.c.o:
-	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/main.c.o
-.PHONY : main.c.o
+src/images.c.o:
+	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/src/images.c.o
+.PHONY : src/images.c.o
 
-main.i: main.c.i
+src/images.i: src/images.c.i
 
-.PHONY : main.i
+.PHONY : src/images.i
 
 # target to preprocess a source file
-main.c.i:
-	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/main.c.i
-.PHONY : main.c.i
+src/images.c.i:
+	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/src/images.c.i
+.PHONY : src/images.c.i
 
-main.s: main.c.s
+src/images.s: src/images.c.s
 
-.PHONY : main.s
+.PHONY : src/images.s
 
 # target to generate assembly for a file
-main.c.s:
-	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/main.c.s
-.PHONY : main.c.s
+src/images.c.s:
+	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/src/images.c.s
+.PHONY : src/images.c.s
+
+src/main.o: src/main.c.o
+
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.c.o:
+	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/src/main.c.o
+.PHONY : src/main.c.o
+
+src/main.i: src/main.c.i
+
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.c.i:
+	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/src/main.c.i
+.PHONY : src/main.c.i
+
+src/main.s: src/main.c.s
+
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.c.s:
+	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/src/main.c.s
+.PHONY : src/main.c.s
+
+src/mlx_test.o: src/mlx_test.c.o
+
+.PHONY : src/mlx_test.o
+
+# target to build an object file
+src/mlx_test.c.o:
+	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/src/mlx_test.c.o
+.PHONY : src/mlx_test.c.o
+
+src/mlx_test.i: src/mlx_test.c.i
+
+.PHONY : src/mlx_test.i
+
+# target to preprocess a source file
+src/mlx_test.c.i:
+	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/src/mlx_test.c.i
+.PHONY : src/mlx_test.c.i
+
+src/mlx_test.s: src/mlx_test.c.s
+
+.PHONY : src/mlx_test.s
+
+# target to generate assembly for a file
+src/mlx_test.c.s:
+	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/src/mlx_test.c.s
+.PHONY : src/mlx_test.c.s
+
+src/parsing.o: src/parsing.c.o
+
+.PHONY : src/parsing.o
+
+# target to build an object file
+src/parsing.c.o:
+	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/src/parsing.c.o
+.PHONY : src/parsing.c.o
+
+src/parsing.i: src/parsing.c.i
+
+.PHONY : src/parsing.i
+
+# target to preprocess a source file
+src/parsing.c.i:
+	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/src/parsing.c.i
+.PHONY : src/parsing.c.i
+
+src/parsing.s: src/parsing.c.s
+
+.PHONY : src/parsing.s
+
+# target to generate assembly for a file
+src/parsing.c.s:
+	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/src/parsing.c.s
+.PHONY : src/parsing.c.s
+
+src/player_init.o: src/player_init.c.o
+
+.PHONY : src/player_init.o
+
+# target to build an object file
+src/player_init.c.o:
+	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/src/player_init.c.o
+.PHONY : src/player_init.c.o
+
+src/player_init.i: src/player_init.c.i
+
+.PHONY : src/player_init.i
+
+# target to preprocess a source file
+src/player_init.c.i:
+	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/src/player_init.c.i
+.PHONY : src/player_init.c.i
+
+src/player_init.s: src/player_init.c.s
+
+.PHONY : src/player_init.s
+
+# target to generate assembly for a file
+src/player_init.c.s:
+	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/src/player_init.c.s
+.PHONY : src/player_init.c.s
+
+src/player_movements.o: src/player_movements.c.o
+
+.PHONY : src/player_movements.o
+
+# target to build an object file
+src/player_movements.c.o:
+	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/src/player_movements.c.o
+.PHONY : src/player_movements.c.o
+
+src/player_movements.i: src/player_movements.c.i
+
+.PHONY : src/player_movements.i
+
+# target to preprocess a source file
+src/player_movements.c.i:
+	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/src/player_movements.c.i
+.PHONY : src/player_movements.c.i
+
+src/player_movements.s: src/player_movements.c.s
+
+.PHONY : src/player_movements.s
+
+# target to generate assembly for a file
+src/player_movements.c.s:
+	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/src/player_movements.c.s
+.PHONY : src/player_movements.c.s
+
+src/raycaster_drawing.o: src/raycaster_drawing.c.o
+
+.PHONY : src/raycaster_drawing.o
+
+# target to build an object file
+src/raycaster_drawing.c.o:
+	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/src/raycaster_drawing.c.o
+.PHONY : src/raycaster_drawing.c.o
+
+src/raycaster_drawing.i: src/raycaster_drawing.c.i
+
+.PHONY : src/raycaster_drawing.i
+
+# target to preprocess a source file
+src/raycaster_drawing.c.i:
+	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/src/raycaster_drawing.c.i
+.PHONY : src/raycaster_drawing.c.i
+
+src/raycaster_drawing.s: src/raycaster_drawing.c.s
+
+.PHONY : src/raycaster_drawing.s
+
+# target to generate assembly for a file
+src/raycaster_drawing.c.s:
+	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/src/raycaster_drawing.c.s
+.PHONY : src/raycaster_drawing.c.s
+
+src/raycaster_prep.o: src/raycaster_prep.c.o
+
+.PHONY : src/raycaster_prep.o
+
+# target to build an object file
+src/raycaster_prep.c.o:
+	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/src/raycaster_prep.c.o
+.PHONY : src/raycaster_prep.c.o
+
+src/raycaster_prep.i: src/raycaster_prep.c.i
+
+.PHONY : src/raycaster_prep.i
+
+# target to preprocess a source file
+src/raycaster_prep.c.i:
+	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/src/raycaster_prep.c.i
+.PHONY : src/raycaster_prep.c.i
+
+src/raycaster_prep.s: src/raycaster_prep.c.s
+
+.PHONY : src/raycaster_prep.s
+
+# target to generate assembly for a file
+src/raycaster_prep.c.s:
+	$(MAKE) -f CMakeFiles/my_app.dir/build.make CMakeFiles/my_app.dir/src/raycaster_prep.c.s
+.PHONY : src/raycaster_prep.c.s
 
 # Help Target
 help:
@@ -187,9 +376,30 @@ help:
 	@echo "... re"
 	@echo "... fclean"
 	@echo "... my_app"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... src/images.o"
+	@echo "... src/images.i"
+	@echo "... src/images.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
+	@echo "... src/mlx_test.o"
+	@echo "... src/mlx_test.i"
+	@echo "... src/mlx_test.s"
+	@echo "... src/parsing.o"
+	@echo "... src/parsing.i"
+	@echo "... src/parsing.s"
+	@echo "... src/player_init.o"
+	@echo "... src/player_init.i"
+	@echo "... src/player_init.s"
+	@echo "... src/player_movements.o"
+	@echo "... src/player_movements.i"
+	@echo "... src/player_movements.s"
+	@echo "... src/raycaster_drawing.o"
+	@echo "... src/raycaster_drawing.i"
+	@echo "... src/raycaster_drawing.s"
+	@echo "... src/raycaster_prep.o"
+	@echo "... src/raycaster_prep.i"
+	@echo "... src/raycaster_prep.s"
 .PHONY : help
 
 
