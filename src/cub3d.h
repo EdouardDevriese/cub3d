@@ -83,6 +83,11 @@ typedef struct s_mlx {
   int endian;
 } t_mlx;
 
+typedef struct s_hook_data {
+	t_mlx *m;
+	t_player *p;
+}
+
 void player_init(t_player *p, t_player_init i);
 void calc_ray(int x, t_ray *r, t_player *p);
 void calc_delta_dist(t_ray *r);
