@@ -30,7 +30,7 @@ int  get_colour(int32_t *colour, char *rgb)
 
 int get_draw_info_line(char *line, t_drawing *d, void *mlx)
 {
-	char *path = ft_strchr(line, '.');
+	char *path = ft_strchr(line, ' ');
 
 	path = ft_strtrim(path, " \n");
 	if (line[0] == 'N' && get_image(d, path, NO, mlx))
