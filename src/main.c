@@ -1,38 +1,45 @@
 #include "cub3d.h"
 #include <stdint.h>
 
-int ft_close_window(t_mlx *mlx) {
-  mlx_destroy_image(mlx->mlx_ptr, mlx->img);
-  mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
-  mlx_destroy_display(mlx->mlx_ptr);
-  free(mlx->mlx_ptr);
-  exit(0);
+int	close_window(t_mlx *mlx)
+{
+	mlx_destroy_image(mlx->mlx_ptr, mlx->img);
+	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
+	mlx_destroy_display(mlx->mlx_ptr);
+	free(mlx->mlx_ptr);
+	exit(0);
 }
 
-int ft_escape(int keycode, t_mlx *mlx) {
-  if (keycode == 65307)
-    ft_close_window(mlx);
-  return (0);
+int	key_hook(int keycode, t_hook_data *h)
+{
+	if (keycode == 65307)
+		close_window(h->m);
+	else if (keycode == 'w' || keycode == 65362)
+		move_w(h->p, h->map);
+	else if (keycode == 'a' || keycode == 65361)
+		move_a(h->p, h->map);
+	else if (keycode == 's' || keycode == 65364)
+		move_s(h->p, h->map);
+	else if (keycode == 'd' || keycode == 65363)
+		move_d(h->p, h->map);
+	return (0);
 }
 
-int32_t rgb_to_int(int r, int g, int b) {
-  return ((r << 16) | (g << 8) | b);
+int32_t	rgb_to_int(int r, int g, int b)
+{
+	return ((r << 16) | (g << 8) | b);
 }
 
-int main() {
-  char **map;
-  t_player_init i;
-  t_player p;
-  t_ray r;
-  t_drawing d;
-  t_mlx m;
-  int x = 0;
-  int y;
-  (void)y;
+int	main(void)
+{
+	char			**map;
+	t_player_init	i;
+	t_player		p;
+	t_ray			r;
+	t_drawing		d;
+	t_mlx			m;
+	t_hook_data		h;
 
-  //@victor
-  // fill in t_player_init i, pass it to player_init.
-  // fill in textures in t_drawing void *tex[4]
 	data_init(&i, &map);
   player_init(&p, i);
   m.mlx_ptr = mlx_init();
@@ -42,13 +49,16 @@ int main() {
       mlx_get_data_addr(m.img, &m.bits_per_pixel, &m.line_length, &m.endian);
 // put iomages here
 	get_draw_info(&d, m.mlx_ptr);
-  mlx_hook(m.win_ptr, 17, 0L, ft_close_window, &m);
-  mlx_key_hook(m.win_ptr, ft_escape, &m);
+  mlx_hook(m.win_ptr, 17, 0L, close_window, &m);
+	h.m = &m;
+	h.p = &p;
+	h.map = map;
+  mlx_key_hook(m.win_ptr, key_hook, &h);
 
   d.x = 0;
   while (d.x < WIN_WIDTH) {
-    calc_ray(x, &r, &p);
-	calc_delta_dist(&r);
+    calc_ray(d.x, &r, &p);
+    calc_delta_dist(&r);
     calc_side_dist(&r, p);
     perform_dda(&r, map);
     calc_line_to_draw(&r, &d);

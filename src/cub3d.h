@@ -67,7 +67,7 @@ typedef struct s_drawing {
   int texY;
   double texPos;
   double step;
-  int32_t color;
+  int32_t pixel;
   void *tex[4];
   int32_t ceiling;
   int32_t floor;
@@ -83,6 +83,12 @@ typedef struct s_mlx {
   int endian;
 } t_mlx;
 
+typedef struct s_hook_data {
+	t_mlx *m;
+	t_player *p;
+	char **map;
+} t_hook_data;
+
 void player_init(t_player *p, t_player_init i);
 void calc_ray(int x, t_ray *r, t_player *p);
 void calc_delta_dist(t_ray *r);
@@ -92,10 +98,16 @@ void calc_line_to_draw(t_ray *r, t_drawing *d);
 void calc_texture_x(t_ray r, t_player p, t_drawing *d);
 void draw_line(t_drawing d, t_ray r, t_mlx m);
 void draw_ceiling_floor(t_drawing d, t_mlx m);
+void	move_w(t_player *p, char **map);
+void	move_a(t_player *p, char **map);
+void	move_s(t_player *p, char **map);
+void	move_d(t_player *p, char **map);
+void	rot_left(t_player *p);
+void	rot_right(t_player *p);
 
 
-int	data_init();
 int	is_map(char *str);
 int get_draw_info(t_drawing *d, void *mlx);
+int	data_init(t_player_init *i, char ***map);
 
 #endif
