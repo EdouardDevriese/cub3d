@@ -16,6 +16,14 @@ void	calc_texture_x(t_ray r, t_player p, t_drawing *d)
 		d->texX = TEX_WIDTH - d->texX - 1;
 }
 
+void	my_mlx_pixel_put(t_mlx *m, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = m->addr + (y * m->line_length + x * (m->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
+
 void draw_line(t_drawing d, t_ray r, t_mlx m) {
   d.step = 1.0 * TEX_HEIGHT / d.lineHeight;
   d.texPos = (d.drawStart - WIN_MID + d.lineHeight / 2) * d.step;
@@ -23,8 +31,9 @@ void draw_line(t_drawing d, t_ray r, t_mlx m) {
   while (d.y < d.drawEnd) {
     d.texY = (int)d.texPos & (TEX_HEIGHT - 1);
     d.texPos += d.step;
-    d.pixel = d.tex[r.orientation][TEX_HEIGHT * d.texY + d.texX];
-    m.addr[d.y * WIN_WIDTH + d.x] = d.pixel;
+    // d.pixel = d.tex[r.orientation][TEX_HEIGHT * d.texY + d.texX];
+    d.pixel = 0;
+    my_mlx_pixel_put(&m, d.x, d.y, d.pixel);
     d.y++;
   }
 }
@@ -33,8 +42,8 @@ void	draw_ceiling_floor(t_drawing d, t_mlx m)
 {
 	d.y = 0;
 	while (d.y < d.drawStart && d.y < WIN_MID)
-		m.addr[d.y * WIN_WIDTH + d.x] = d.ceiling;
+        my_mlx_pixel_put(&m, d.x, d.y, 1000000);
 	d.y = d.drawEnd;
 	while (d.y < WIN_HEIGHT)
-		m.addr[d.y * WIN_WIDTH + d.x] = d.floor;
+        my_mlx_pixel_put(&m, d.x, d.y, 2000000);
 }
