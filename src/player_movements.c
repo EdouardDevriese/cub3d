@@ -2,34 +2,34 @@
 
 void	move_w(t_player *p, char **map)
 {
-	if (map[(int)(p->posX + p->dirX * MOVE_SPEED)][(int)p->posY] == '0')
-		p->posX += p->dirX * MOVE_SPEED;
-	if (map[(int)p->posX][(int)(p->posY + p->dirY * MOVE_SPEED)] == '0')
+	if (map[(int)(p->posY + p->dirY * MOVE_SPEED)][(int)p->posX] == '0')
 		p->posY += p->dirY * MOVE_SPEED;
+	if (map[(int)p->posY][(int)(p->posX + p->dirX * MOVE_SPEED)] == '0')
+		p->posX += p->dirX * MOVE_SPEED;
 }
 
 void	move_s(t_player *p, char **map)
 {
-	if (map[(int)(p->posX - p->dirX * MOVE_SPEED)][(int)p->posY] == '0')
-		p->posX -= p->dirX * MOVE_SPEED;
-	if (map[(int)p->posX][(int)(p->posY - p->dirY * MOVE_SPEED)] == '0')
+	if (map[(int)(p->posY - p->dirY * MOVE_SPEED)][(int)p->posX] == '0')
 		p->posY -= p->dirY * MOVE_SPEED;
+	if (map[(int)p->posY][(int)(p->posX - p->dirX * MOVE_SPEED)] == '0')
+		p->posX -= p->dirX * MOVE_SPEED;
 }
 
 void	move_a(t_player *p, char **map)
 {
-	if (map[(int)(p->posX - p->planeX * MOVE_SPEED)][(int)p->posY] == '0')
-		p->posX -= p->planeX * MOVE_SPEED;
-	if (map[(int)p->posX][(int)(p->posY - p->planeY * MOVE_SPEED)] == '0')
+	if (map[(int)(p->posY - p->planeY * MOVE_SPEED)][(int)p->posX] == '0')
 		p->posY -= p->planeY * MOVE_SPEED;
+	if (map[(int)p->posY][(int)(p->posX - p->planeX * MOVE_SPEED)] == '0')
+		p->posX -= p->planeX * MOVE_SPEED;
 }
 
 void	move_d(t_player *p, char **map)
 {
-	if (map[(int)(p->posX + p->planeX * MOVE_SPEED)][(int)p->posY] == '0')
-		p->posX += p->planeX * MOVE_SPEED;
-	if (map[(int)p->posX][(int)(p->posY + p->planeY * MOVE_SPEED)] == '0')
+	if (map[(int)(p->posY + p->planeY * MOVE_SPEED)][(int)p->posX] == '0')
 		p->posY += p->planeY * MOVE_SPEED;
+	if (map[(int)p->posY][(int)(p->posX + p->planeX * MOVE_SPEED)] == '0')
+		p->posX += p->planeX * MOVE_SPEED;
 }
 
 void	rot_left(t_player *p)

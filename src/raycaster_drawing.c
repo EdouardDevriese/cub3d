@@ -49,8 +49,8 @@ void	draw_ceiling_floor(t_drawing d, t_mlx *m)
 {
 	d.y = 0;
 	while (d.y < d.drawStart && d.y < WIN_MID)
-        my_mlx_pixel_put(m, d.x, d.y, WHITE);
+        my_mlx_pixel_put(m, d.x, (d.y)++, d.floor);
 	d.y = d.drawEnd;
 	while (d.y < WIN_HEIGHT)
-        my_mlx_pixel_put(m, d.x, d.y, BLACK);
+        my_mlx_pixel_put(m, d.x, (d.y)++, d.ceiling);
 }

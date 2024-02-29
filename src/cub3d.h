@@ -6,10 +6,40 @@
 #define WIN_MID 240
 #define TEX_WIDTH 64
 #define TEX_HEIGHT 64
-#define MOVE_SPEED 0.012
-#define ROT_SPEED 0.015
+#define MOVE_SPEED 0.2
+#define ROT_SPEED 0.2
 # define WHITE 0x00FFFFFF
 # define BLACK 0x00000000
+
+#ifndef KEYS_H
+# define KEYS_H
+# ifdef __linux__
+#  define K_ESC			65307
+#  define K_R			27
+#  define K_W			119
+#  define K_A			97
+#  define K_S			115
+#  define K_D			100
+#  define K_RIGHT		65361
+#  define K_LEFT		65363
+# else
+#  define K_ESC			53
+#  define K_R			15
+#  define K_W			13
+#  define K_A			0
+#  define K_S			1
+#  define K_D			2
+#  define K_RIGHT		123
+#  define K_LEFT		124
+# endif
+# define I_FORWARD	K_W
+# define I_BACKWARD	K_S
+# define I_LEFT		K_A
+# define I_RIGHT	K_D
+# define I_ROLEFT	K_RIGHT
+# define I_RORIGHT	K_LEFT
+#endif
+
 
 #include "../libft/inc/libft.h"
 #include "../mlx_linux/mlx.h"

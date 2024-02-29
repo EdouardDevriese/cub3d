@@ -12,16 +12,20 @@ int	close_window(t_mlx *mlx)
 
 int	key_hook(int keycode, t_hook_data *h)
 {
-	if (keycode == 65307)
+	if (keycode == K_ESC)
 		close_window(h->m);
-	else if (keycode == 'w' || keycode == 65362)
+	else if (keycode == K_W)
 		move_w(h->p, h->map);
-	else if (keycode == 'a' || keycode == 65361)
+	else if (keycode == K_A)
 		move_a(h->p, h->map);
-	else if (keycode == 's' || keycode == 65364)
+	else if (keycode == K_S)
 		move_s(h->p, h->map);
-	else if (keycode == 'd' || keycode == 65363)
+	else if (keycode == K_D)
 		move_d(h->p, h->map);
+	else if (keycode == K_LEFT)
+		rot_left(h->p);
+	else if (keycode == K_RIGHT)
+		rot_right(h->p);
 	else
 		printf("keycode [%i]\n", keycode);
 	return (0);
