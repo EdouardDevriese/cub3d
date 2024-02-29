@@ -142,9 +142,15 @@ void	rot_right(t_player *p);
 
 
 int	is_map(char *str);
-int get_draw_info(t_drawing *d, void *mlx);
-int	data_init(t_player_init *i, char ***map);
+int get_draw_info(t_drawing *d, void *mlx, char *map_file);
+int	data_init(t_player_init *i, char ***map, char *map_file);
 int map_content_check(char **map);
 int	get_dimensions(char *map_src, int *x, int *y);
+void	set_drawing_to_null(t_drawing *d);
+int	check_info(t_drawing *d);
+int32_t	rgb_to_int(int r, int g, int b);
+int	check_player_amount(char **map);
+int	check_player_pos(char **map);
+int	check_tile(char **map, int y, int x);
 
 #endif

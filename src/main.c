@@ -64,19 +64,19 @@ int	key_hook(int keycode, t_data *data)
 	return (0);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_data data;
 
-	if (data_init(&data.i, &data.map))
-		printf("Map Error\n");
+	if (argc != 2 || data_init(&data.i, &data.map, argv[1]))
+		return (printf("Error\n"));
   player_init(&data.p, data.i);
   data.m.mlx_ptr = mlx_init();
   data.m.win_ptr = mlx_new_window(data.m.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "deez cubez");
   data.m.img = mlx_new_image(data.m.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
   data.m.addr =
       mlx_get_data_addr(data.m.img, &data.m.bits_per_pixel, &data.m.line_length, &data.m.endian);
-	get_draw_info(&data.d, data.m.mlx_ptr);
+	get_draw_info(&data.d, data.m.mlx_ptr, argv[1]);
   mlx_hook(data.m.win_ptr, 17, 0L, close_window, &data);
   mlx_key_hook(data.m.win_ptr, key_hook, &data);
   prep_window(&data);
