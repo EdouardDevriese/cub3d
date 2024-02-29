@@ -4,7 +4,12 @@ int  get_image(t_drawing *d, char *path, t_orientation dir, void *mlx)
 {
 	d->tex[dir] = mlx_xpm_file_to_image(mlx, path, &d->texX, &d->texY);
 	if (!d->tex[dir])
-		printf("Error creating image [%s], in %s\n", path, __func__);
+	{
+		printf("Error creating image [%s], in %s\ncreating backup image\n", path, __func__);
+		d->tex[dir] = mlx_xpm_file_to_image(mlx, "./textures/missing-texture_64x64.xpm", &d->texX, &d->texY);
+		if (!d->tex[dir])
+			printf("error creating backup image\n");
+	}
 	return (0);
 }
 
