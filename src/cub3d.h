@@ -6,8 +6,8 @@
 #define WIN_MID 240
 #define TEX_WIDTH 64
 #define TEX_HEIGHT 64
-#define MOVE_SPEED 0.2
-#define ROT_SPEED 0.2
+#define MOVE_SPEED 0.22
+#define ROT_SPEED 0.12
 # define WHITE 0x00FFFFFF
 # define BLACK 0x00000000
 
@@ -115,11 +115,14 @@ typedef struct s_drawing {
   int32_t floor;
 } t_drawing;
 
-typedef struct s_hook_data {
-	t_mlx *m;
-	t_player *p;
-	char **map;
-} t_hook_data;
+typedef struct s_data {
+	char			**map;
+	t_player_init	i;
+	t_player		p;
+	t_ray			r;
+	t_drawing		d;
+	t_mlx			m;
+} t_data;
 
 void player_init(t_player *p, t_player_init i);
 void calc_ray(int x, t_ray *r, t_player *p);

@@ -32,7 +32,7 @@ void	move_d(t_player *p, char **map)
 		p->posX += p->planeX * MOVE_SPEED;
 }
 
-void	rot_left(t_player *p)
+void	rot_right(t_player *p)
 {
 	double	oldDirX;
 	double	oldPlaneX;
@@ -45,7 +45,7 @@ void	rot_left(t_player *p)
 	p->planeY = oldPlaneX * sin(ROT_SPEED) + p->planeY * cos(ROT_SPEED);
 }
 
-void	rot_right(t_player *p)
+void	rot_left(t_player *p)
 {
 	double	oldDirX;
 	double	oldPlaneX;
