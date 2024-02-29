@@ -8,6 +8,8 @@
 #define TEX_HEIGHT 64
 #define MOVE_SPEED 0.012
 #define ROT_SPEED 0.015
+# define WHITE 0x00FFFFFF
+# define BLACK 0x00000000
 
 #include "../libft/inc/libft.h"
 #include "../mlx_linux/mlx.h"
@@ -67,8 +69,8 @@ typedef struct s_drawing {
   int texY;
   double texPos;
   double step;
-  int32_t pixel;
-  void *tex[4];
+  int pixel;
+  t_mlx tex[4];
   int32_t ceiling;
   int32_t floor;
 } t_drawing;

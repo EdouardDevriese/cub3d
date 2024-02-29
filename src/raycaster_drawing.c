@@ -24,6 +24,14 @@ void	my_mlx_pixel_put(t_mlx *m, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
+int	get_pixel_from_image(t_mlx tex, int x, int y)
+{
+	char	*dst;
+
+	dst = tex.addr + (y * tex.line_length + x * (tex.bits_per_pixel / 8));
+	return (*(unsigned int *)dst);
+}
+
 void draw_line(t_drawing d, t_ray r, t_mlx m) {
   d.step = 1.0 * TEX_HEIGHT / d.lineHeight;
   d.texPos = (d.drawStart - WIN_MID + d.lineHeight / 2) * d.step;
@@ -31,11 +39,9 @@ void draw_line(t_drawing d, t_ray r, t_mlx m) {
   while (d.y < d.drawEnd) {
     d.texY = (int)d.texPos & (TEX_HEIGHT - 1);
     d.texPos += d.step;
-    // d.pixel = d.tex[r.orientation][TEX_HEIGHT * d.texY + d.texX];
-    d.pixel = 0xAAAAAA;
+    d.pixel = get_pixel_from_image(tex[r.orientation], d.texX, d.texY);
     my_mlx_pixel_put(&m, d.x, d.y, d.pixel);
     d.y++;
-	(void)r;
   }
 }
 
@@ -43,8 +49,8 @@ void	draw_ceiling_floor(t_drawing d, t_mlx m)
 {
 	d.y = 0;
 	while (d.y < d.drawStart && d.y < WIN_MID)
-        my_mlx_pixel_put(&m, d.x, d.y, 0x000000);
+        my_mlx_pixel_put(&m, d.x, d.y, WHITE);
 	d.y = d.drawEnd;
 	while (d.y < WIN_HEIGHT)
-        my_mlx_pixel_put(&m, d.x, d.y, 0xFFFFFF);
+        my_mlx_pixel_put(&m, d.x, d.y, BLACK);
 }
