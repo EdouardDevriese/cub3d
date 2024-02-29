@@ -96,17 +96,6 @@ int	map_to_map(char **map, char *map_src, int y)
 	return (1);
 }
 
-#include <stdio.h>
-
-void	print_map(char **map)
-{
-	while (*map)
-	{
-		ft_putstr_fd(*map, 1);
-		map++;
-	}
-}
-
 void	get_player_info(t_player_init *i, char **map)
 {
 	int		index;
@@ -139,6 +128,7 @@ void	get_player_info(t_player_init *i, char **map)
 	i->posY = index;
 	i->posX = result - map[index];
 }
+//TODO cleaner
 
 int	data_init(t_player_init *i, char ***map_src)
 {
@@ -152,7 +142,7 @@ int	data_init(t_player_init *i, char ***map_src)
 	map_to_map(map, map_file, y);
 	get_player_info(i, map);
 	*map_src = map;
-	return (0);
+	return (map_content_check(map));
 }
-//map is forced path atm
-//still need to add textures
+//TODO map is forced path atm
+//TODO free map

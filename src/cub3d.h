@@ -109,5 +109,7 @@ void	rot_right(t_player *p);
 int	is_map(char *str);
 int get_draw_info(t_drawing *d, void *mlx);
 int	data_init(t_player_init *i, char ***map);
+int map_content_check(char **map);
+int	get_dimensions(char *map_src, int *x, int *y);
 
 #endif

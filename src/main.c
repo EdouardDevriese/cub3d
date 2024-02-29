@@ -38,7 +38,8 @@ int	main(void)
 	t_mlx			m;
 	t_hook_data		h;
 
-	data_init(&i, &map);
+	if (data_init(&i, &map))
+		printf("Map Error\n");
   player_init(&p, i);
   m.mlx_ptr = mlx_init();
   m.win_ptr = mlx_new_window(m.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "deez cubez");
