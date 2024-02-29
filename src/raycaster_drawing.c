@@ -32,7 +32,7 @@ void draw_line(t_drawing d, t_ray r, t_mlx m) {
     d.texY = (int)d.texPos & (TEX_HEIGHT - 1);
     d.texPos += d.step;
     // d.pixel = d.tex[r.orientation][TEX_HEIGHT * d.texY + d.texX];
-    d.pixel = 0;
+    d.pixel = 0xAAAAAA;
     my_mlx_pixel_put(&m, d.x, d.y, d.pixel);
     d.y++;
 	(void)r;
@@ -43,8 +43,8 @@ void	draw_ceiling_floor(t_drawing d, t_mlx m)
 {
 	d.y = 0;
 	while (d.y < d.drawStart && d.y < WIN_MID)
-        my_mlx_pixel_put(&m, d.x, d.y, 1000000);
+        my_mlx_pixel_put(&m, d.x, d.y, 0x000000);
 	d.y = d.drawEnd;
 	while (d.y < WIN_HEIGHT)
-        my_mlx_pixel_put(&m, d.x, d.y, 2000000);
+        my_mlx_pixel_put(&m, d.x, d.y, 0xFFFFFF);
 }
