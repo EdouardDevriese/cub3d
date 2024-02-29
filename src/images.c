@@ -2,6 +2,11 @@
 
 int  get_image(t_drawing *d, char *path, t_orientation dir, void *mlx)
 {
+	if (d->tex[dir])
+	{
+		printf("Error texture already exists\n");
+		return (0);
+	}
 	d->tex[dir] = mlx_xpm_file_to_image(mlx, path, &d->texX, &d->texY);
 	if (!d->tex[dir])
 	{
@@ -46,7 +51,7 @@ int get_draw_info_line(char *line, t_drawing *d, void *mlx)
 		return (1);
 	else if (line[0] == 'E' && get_image(d, path, EA, mlx))
 		return (1);
-	else if (line[0] == 'F' && get_colour(&d->ceiling, path))
+	else if (line[0] == 'F' && get_colour(&d->floor, path))
 		return (1);
 	else if (line[0] == 'C' && get_colour(&d->ceiling, path))
 		return (1);
@@ -67,11 +72,21 @@ int	check_info(t_drawing *d)
 }
 //TODO how to check for failure of getting the colour values
 
+
+void	set_drawing_to_null(t_drawing *d)
+{
+	d->tex[NO] = 0;
+	d->tex[SO] = 0;
+	d->tex[WE] = 0;
+	d->tex[EA] = 0;
+}
+
 int get_draw_info(t_drawing *d, void *mlx)
 {
 	int fd = open("maps/map.txt", O_RDONLY);
 	char *new_line = get_next_line(fd);
 
+	set_drawing_to_null(d);
 	while (new_line)
 	{
 		if (!is_map(new_line) && *new_line != '\n')
