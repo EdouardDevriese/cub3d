@@ -58,6 +58,16 @@ typedef struct s_ray {
   t_orientation orientation;
 } t_ray;
 
+typedef struct s_mlx {
+  void *mlx_ptr;
+  void *win_ptr;
+  void *img;
+  char *addr;
+  int bits_per_pixel;
+  int line_length;
+  int endian;
+} t_mlx;
+
 typedef struct s_drawing {
   int x;
   int y;
@@ -74,16 +84,6 @@ typedef struct s_drawing {
   int32_t ceiling;
   int32_t floor;
 } t_drawing;
-
-typedef struct s_mlx {
-  void *mlx_ptr;
-  void *win_ptr;
-  void *img;
-  char *addr;
-  int bits_per_pixel;
-  int line_length;
-  int endian;
-} t_mlx;
 
 typedef struct s_hook_data {
 	t_mlx *m;

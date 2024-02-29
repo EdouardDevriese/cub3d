@@ -2,22 +2,43 @@
 
 int  get_image(t_drawing *d, char *path, t_orientation dir, void *mlx)
 {
-	if (d->tex[dir])
+	if (d->tex[dir].img)
 	{
 		printf("Error texture already exists\n");
 		return (0);
 	}
-	d->tex[dir] = mlx_xpm_file_to_image(mlx, path, &d->texX, &d->texY);
-	if (!d->tex[dir])
+	d->tex[dir].img = mlx_xpm_file_to_image(mlx, path, &d->texX, &d->texY);
+	if (!d->tex[dir].img)
 	{
 		printf("Error creating image [%s], in %s\ncreating backup image\n", path, __func__);
-		d->tex[dir] = mlx_xpm_file_to_image(mlx, "./textures/missing-texture_64x64.xpm", &d->texX, &d->texY);
-		if (!d->tex[dir])
+		d->tex[dir].img = mlx_xpm_file_to_image(mlx, "./textures/missing-texture_64x64.xpm", &d->texX, &d->texY);
+		if (!d->tex[dir].img)
 			printf("error creating backup image\n");
 	}
+	d->tex[dir].addr = mlx_get_data_addr(d->tex[dir].img, &d->tex[dir].bits_per_pixel, &d->tex[dir].line_length, &d->tex[dir].endian);
 	return (0);
 }
-
+/*
+ *
+ *int  get_image(t_drawing *d, char *path, t_orientation dir, void *mlx)
+ *{
+ *    if (d->tex[dir])
+ *    {
+ *        printf("Error texture already exists\n");
+ *        return (0);
+ *    }
+ *    d->tex[dir] = mlx_xpm_file_to_image(mlx, path, &d->texX, &d->texY);
+ *    if (!d->tex[dir])
+ *    {
+ *        printf("Error creating image [%s], in %s\ncreating backup image\n", path, __func__);
+ *        d->tex[dir] = mlx_xpm_file_to_image(mlx, "./textures/missing-texture_64x64.xpm", &d->texX, &d->texY);
+ *        if (!d->tex[dir])
+ *            printf("error creating backup image\n");
+ *    }
+ *    return (0);
+ *}
+ *
+ */
 //TODO create default  value should texture creation fail for any reason
 
 int32_t	rgb_to_int(int r, int g, int b)
@@ -86,27 +107,29 @@ int get_draw_info_line(char *line, t_drawing *d, void *mlx)
 	return (0);
 }
 
-int	check_info(t_drawing *d)
-{
-	if (!d->tex[NO])
-		return (1);
-	if (!d->tex[SO])
-		return (1);
-	if (!d->tex[EA])
-		return (1);
-	if (!d->tex[WE])
-		return (1);
-	return (0);
-}
+/*
+ *int	check_info(t_drawing *d)
+ *{
+ *    if (!d->tex[NO])
+ *        return (1);
+ *    if (!d->tex[SO])
+ *        return (1);
+ *    if (!d->tex[EA])
+ *        return (1);
+ *    if (!d->tex[WE])
+ *        return (1);
+ *    return (0);
+ *}
+ */
 //TODO how to check for failure of getting the colour values
 
 
 void	set_drawing_to_null(t_drawing *d)
 {
-	d->tex[NO] = 0;
-	d->tex[SO] = 0;
-	d->tex[WE] = 0;
-	d->tex[EA] = 0;
+	d->tex[NO].img = 0;
+	d->tex[SO].img = 0;
+	d->tex[WE].img = 0;
+	d->tex[EA].img = 0;
 }
 
 int get_draw_info(t_drawing *d, void *mlx)
