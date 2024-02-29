@@ -25,18 +25,46 @@ int32_t	rgb_to_int(int r, int g, int b)
 	return ((r << 16) | (g << 8) | b);
 }
 
+int	check_rgb(char **rgb_strs)
+{
+	int i;
+	int j;
+	int status;
+
+	status = 0;
+	i = 0;
+	while (rgb_strs[i])
+	{
+		j = 0;
+		while (!status && rgb_strs[i][j])
+			if (!ft_isdigit(rgb_strs[i][j++]))
+				status = 1;
+		i++;
+	}
+	if (status)
+	{
+		ft_free_array(rgb_strs, i);
+		printf("Error: Color wrong in %s in %s on line %i\n", __func__, __FILE__, __LINE__);
+		return (1);	
+	}
+	return (0);
+}
+
 int  get_colour(int32_t *colour, char *rgb)
 {
 	int32_t rgb_int;
-	while (ft_isdigit(*rgb))
-		rgb++;
 	char **rgb_strs;
+
+	while (*rgb == ' ')
+		rgb++;
 	rgb_strs = ft_split(rgb, ',');
+	if (check_rgb(rgb_strs))
+		return (1);
 	rgb_int = rgb_to_int(ft_atoi(rgb_strs[0]), ft_atoi(rgb_strs[1]), ft_atoi(rgb_strs[2]));
 	*colour = rgb_int;
+	ft_free_array(rgb_strs, 3);
 	return (0);
 }
-//TODO free split result && check for succes
 
 int get_draw_info_line(char *line, t_drawing *d, void *mlx)
 {
