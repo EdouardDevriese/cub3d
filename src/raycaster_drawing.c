@@ -32,25 +32,25 @@ int	get_pixel_from_image(t_mlx tex, int x, int y)
 	return (*(unsigned int *)dst);
 }
 
-void draw_line(t_drawing d, t_ray r, t_mlx m) {
+void draw_line(t_drawing d, t_ray r, t_mlx *m) {
   d.step = 1.0 * TEX_HEIGHT / d.lineHeight;
   d.texPos = (d.drawStart - WIN_MID + d.lineHeight / 2) * d.step;
   d.y = d.drawStart;
   while (d.y < d.drawEnd) {
     d.texY = (int)d.texPos & (TEX_HEIGHT - 1);
     d.texPos += d.step;
-    d.pixel = get_pixel_from_image(tex[r.orientation], d.texX, d.texY);
-    my_mlx_pixel_put(&m, d.x, d.y, d.pixel);
+    d.pixel = get_pixel_from_image(d.tex[r.orientation], d.texX, d.texY);
+    my_mlx_pixel_put(m, d.x, d.y, d.pixel);
     d.y++;
   }
 }
 
-void	draw_ceiling_floor(t_drawing d, t_mlx m)
+void	draw_ceiling_floor(t_drawing d, t_mlx *m)
 {
 	d.y = 0;
 	while (d.y < d.drawStart && d.y < WIN_MID)
-        my_mlx_pixel_put(&m, d.x, d.y, WHITE);
+        my_mlx_pixel_put(m, d.x, d.y, WHITE);
 	d.y = d.drawEnd;
 	while (d.y < WIN_HEIGHT)
-        my_mlx_pixel_put(&m, d.x, d.y, BLACK);
+        my_mlx_pixel_put(m, d.x, d.y, BLACK);
 }

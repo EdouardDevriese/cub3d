@@ -62,8 +62,8 @@ int	main(void)
     perform_dda(&r, map);
     calc_line_to_draw(&r, &d);
     calc_texture_x(r, p, &d);
-    draw_line(d, r, m);
-    draw_ceiling_floor(d, m);
+    draw_line(d, r, &m);
+    draw_ceiling_floor(d, &m);
 
     d.x++;
   }
