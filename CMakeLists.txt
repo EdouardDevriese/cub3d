@@ -21,7 +21,7 @@ add_compile_options(-Wall -Wextra -Werror -g -O0)
 
 
 # Add an executable target
-add_executable(my_app ${MyCSources} libft.a)
+add_executable(my_app ${MyCSources})
 
 
 
