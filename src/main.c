@@ -1,12 +1,27 @@
 #include "cub3d.h"
 #include <stdint.h>
 
-int	close_window(t_mlx *mlx)
+void free_map(char **map)
 {
-	mlx_destroy_image(mlx->mlx_ptr, mlx->img);
-	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
-	mlx_destroy_display(mlx->mlx_ptr);
-	free(mlx->mlx_ptr);
+	int i;
+
+	i = 0;
+	while (map[i])
+		free(map[i++]);
+	free(map);
+}
+
+int	close_window(t_data *data)
+{
+	mlx_destroy_image(data->m.mlx_ptr, data->m.img);
+	mlx_destroy_image(data->m.mlx_ptr, data->d.tex[NO].img);
+	mlx_destroy_image(data->m.mlx_ptr, data->d.tex[EA].img);
+	mlx_destroy_image(data->m.mlx_ptr, data->d.tex[SO].img);
+	mlx_destroy_image(data->m.mlx_ptr, data->d.tex[WE].img);
+	mlx_destroy_window(data->m.mlx_ptr, data->m.win_ptr);
+	mlx_destroy_display(data->m.mlx_ptr);
+	free(data->m.mlx_ptr);
+	free_map(data->map);
 	exit(0);
 }
 
@@ -30,7 +45,7 @@ void	prep_window(t_data *data) {
 int	key_hook(int keycode, t_data *data)
 {
 	if (keycode == K_ESC)
-		close_window(&data->m);
+		close_window(data);
 	else if (keycode == K_W)
 		move_w(&data->p, data->map);
 	else if (keycode == K_A)
@@ -62,7 +77,7 @@ int	main(void)
   data.m.addr =
       mlx_get_data_addr(data.m.img, &data.m.bits_per_pixel, &data.m.line_length, &data.m.endian);
 	get_draw_info(&data.d, data.m.mlx_ptr);
-  mlx_hook(data.m.win_ptr, 17, 0L, close_window, &data.m);
+  mlx_hook(data.m.win_ptr, 17, 0L, close_window, &data);
   mlx_key_hook(data.m.win_ptr, key_hook, &data);
   prep_window(&data);
    mlx_loop(data.m.mlx_ptr);
