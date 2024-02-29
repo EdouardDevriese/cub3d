@@ -91,7 +91,7 @@ void	perform_dda(t_ray *r, char **map)
 			else
 				r->orientation = NO;
 		}
-		if (map[r->mapX][r->mapY] == 1)
+		if (map[r->mapY][r->mapX] == '1')
 			r->hit = 1;
 	}
 }
