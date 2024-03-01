@@ -54,7 +54,7 @@ int	get_dimensions(char *map_src, int *x, int *y)
 	}
 	(*x)--;
 	close(fd);
-	return (1);
+	return (0);
 }
 /*
  * right now this assumes that the first line is already the map
@@ -72,7 +72,7 @@ int	malloc_map(char ***map, int y)
 	if (!map)
 		return (1);
 	*map = new_map;
-	return (1);
+	return (0);
 }
 
 int	map_to_map(char **map, char *map_src, int y)
@@ -98,7 +98,7 @@ int	map_to_map(char **map, char *map_src, int y)
 		new_read = get_next_line(fd);
 	}
 	close(fd);
-	return (1);
+	return (0);
 }
 
 void	get_player_info(t_player_init *i, char **map)

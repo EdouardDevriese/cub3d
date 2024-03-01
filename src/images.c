@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:50:20 by vdenisse          #+#    #+#             */
-/*   Updated: 2024/03/01 10:31:01 by vdenisse         ###   ########.fr       */
+/*   Updated: 2024/03/01 10:47:18 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ int	get_draw_info_line(char *line, t_drawing *d, void *mlx)
 		return (1);
 	else if (line[0] == 'C' && get_colour(&d->ceiling, path))
 		return (1);
+	else
+		return (1);
 	return (0);
 }
 
@@ -96,18 +98,19 @@ int	get_draw_info(t_drawing *d, void *mlx, char *map_file)
 {
 	int		fd;
 	char	*new_line;
+	int		status;
 
 	fd = open(map_file, O_RDONLY);
 	new_line = get_next_line(fd);
 	set_drawing_to_null(d);
+	status = 0;
 	while (new_line)
 	{
 		if (!is_map(new_line) && *new_line != '\n')
-			get_draw_info_line(new_line, d, mlx);
+			if (!status && get_draw_info_line(new_line, d, mlx))
+				status = 1;
 		free(new_line);
 		new_line = get_next_line(fd);
 	}
-	if (check_info(d))
-		return (1);
-	return (0);
+	return (check_info(d));
 }
