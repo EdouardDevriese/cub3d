@@ -6,28 +6,11 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:09:04 by wdevries          #+#    #+#             */
-/*   Updated: 2024/03/04 11:25:09 by wdevries         ###   ########.fr       */
+/*   Updated: 2024/03/04 11:56:35 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdbool.h>
-
-int	is_map(char *str)
-{
-	bool	has_info;
-
-	has_info = false;
-	while (*str && *str != '\n')
-	{
-		if (*str != '1' && *str != ' ' && *str != '0')
-			return (0);
-		if (*str == '1' || *str == '0')
-			has_info = true;
-		str++;
-	}
-	return (has_info);
-}
 
 char	*get_fd(char *map_src, int *fd)
 {
@@ -113,46 +96,12 @@ int	map_to_map(char **map, char *map_src, int y)
 	return (0);
 }
 
-void	get_player_info(t_player_init *i, char **map)
-{
-	int		index;
-	char	*result;
-
-	index = 0;
-	result = NULL;
-	while (map[index] && !result)
-	{
-		result = strchr(map[index], 'N');
-		i->dir = NO;
-		if (!result)
-		{
-			result = strchr(map[index], 'E');
-			i->dir = EA;
-		}
-		if (!result)
-		{
-			result = strchr(map[index], 'S');
-			i->dir = SO;
-		}
-		if (!result)
-		{
-			result = strchr(map[index], 'W');
-			i->dir = WE;
-		}
-		if (!result)
-			index++;
-	}
-	i->pos_y = index;
-	i->pos_x = result - map[index];
-	map[i->pos_y][i->pos_x] = '0';
-}
-//TODO cleaner
-
 int	data_init(t_player_init *i, char ***map_src, char *map_file)
 {
 	char	**map;
+	int		x;
+	int		y;
 
-	int x, y;
 	y = ft_strlen(map_file);
 	while (y >= 0 && map_file[y] != '.')
 		y--;
@@ -175,4 +124,3 @@ int	data_init(t_player_init *i, char ***map_src, char *map_file)
 	}
 	return (0);
 }
-//TODO free map

@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:08:30 by wdevries          #+#    #+#             */
-/*   Updated: 2024/03/04 11:08:32 by wdevries         ###   ########.fr       */
+/*   Updated: 2024/03/04 11:56:41 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@
 # include "../mlx_linux/mlx.h"
 # include <math.h>
 # include <stdint.h>
+# include <stdbool.h>
 
 typedef enum e_orientation
 {
@@ -172,5 +173,6 @@ int32_t				rgb_to_int(int r, int g, int b);
 int					check_player_amount(char **map);
 int					check_player_pos(char **map);
 int					check_tile(char **map, int y, int x);
+void				get_player_info(t_player_init *i, char **map);
 
 #endif
