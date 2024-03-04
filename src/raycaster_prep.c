@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:09:29 by wdevries          #+#    #+#             */
-/*   Updated: 2024/03/04 11:22:48 by wdevries         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:00:02 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,13 @@ void	calc_ray(int x, t_ray *r, t_player *p)
 void	calc_delta_dist(t_ray *r)
 {
 	if (r->raydir_x == 0)
-	{
 		r->deltadist_x = INFINITY;
-	}
 	else
-	{
 		r->deltadist_x = fabs(1 / r->raydir_x);
-	}
 	if (r->raydir_y == 0)
-	{
 		r->deltadist_y = INFINITY;
-	}
 	else
-	{
 		r->deltadist_y = fabs(1 / r->raydir_y);
-	}
 }
 
 // map: coordinates of square ray is currently in
