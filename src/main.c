@@ -14,10 +14,14 @@ void free_map(char **map)
 int	close_window(t_data *data)
 {
 	mlx_destroy_image(data->m.mlx_ptr, data->m.img);
-	mlx_destroy_image(data->m.mlx_ptr, data->d.tex[NO].img);
-	mlx_destroy_image(data->m.mlx_ptr, data->d.tex[EA].img);
-	mlx_destroy_image(data->m.mlx_ptr, data->d.tex[SO].img);
-	mlx_destroy_image(data->m.mlx_ptr, data->d.tex[WE].img);
+	if (data->d.tex[NO].img)
+		mlx_destroy_image(data->m.mlx_ptr, data->d.tex[NO].img);
+	if (data->d.tex[EA].img)
+		mlx_destroy_image(data->m.mlx_ptr, data->d.tex[EA].img);
+	if (data->d.tex[SO].img)
+		mlx_destroy_image(data->m.mlx_ptr, data->d.tex[SO].img);
+	if (data->d.tex[WE].img)
+		mlx_destroy_image(data->m.mlx_ptr, data->d.tex[WE].img);
 	mlx_destroy_window(data->m.mlx_ptr, data->m.win_ptr);
 	mlx_destroy_display(data->m.mlx_ptr);
 	free(data->m.mlx_ptr);
@@ -76,7 +80,11 @@ int	main(int argc, char **argv)
   data.m.img = mlx_new_image(data.m.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
   data.m.addr =
       mlx_get_data_addr(data.m.img, &data.m.bits_per_pixel, &data.m.line_length, &data.m.endian);
-	get_draw_info(&data.d, data.m.mlx_ptr, argv[1]);
+	if (get_draw_info(&data.d, data.m.mlx_ptr, argv[1]))
+	{
+		printf("Error\n");
+		close_window(&data);
+	}
   mlx_hook(data.m.win_ptr, 17, 0L, close_window, &data);
   mlx_key_hook(data.m.win_ptr, key_hook, &data);
   prep_window(&data);

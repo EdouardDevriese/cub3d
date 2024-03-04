@@ -21,12 +21,12 @@ add_compile_options(-Wall -Wextra -Werror -g -O0)
 
 
 # Add an executable target
-add_executable(my_app ${MyCSources})
+add_executable(cub3D ${MyCSources})
 
 
 
 #add libft.a
-target_link_libraries(my_app PRIVATE ${CMAKE_SOURCE_DIR}/libft/libft.a ${CMAKE_SOURCE_DIR}/mlx_linux/libmlx_Linux.a)
+target_link_libraries(cub3D PRIVATE ${CMAKE_SOURCE_DIR}/libft/libft.a ${CMAKE_SOURCE_DIR}/mlx_linux/libmlx_Linux.a)
 
 
 

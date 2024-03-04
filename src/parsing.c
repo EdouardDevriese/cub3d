@@ -39,7 +39,7 @@ int	get_dimensions(char *map_src, int *x, int *y)
 
 	*y = 0;
 	new_read = get_fd(map_src, &fd);
-	if (fd == -1)
+	if (fd == -1 || !new_read)
 		return (1);
 	*x = ft_strlen(new_read);
 	if (*(x) == 0)
@@ -54,7 +54,7 @@ int	get_dimensions(char *map_src, int *x, int *y)
 	}
 	(*x)--;
 	close(fd);
-	return (1);
+	return (0);
 }
 /*
  * right now this assumes that the first line is already the map
@@ -72,7 +72,7 @@ int	malloc_map(char ***map, int y)
 	if (!map)
 		return (1);
 	*map = new_map;
-	return (1);
+	return (0);
 }
 
 int	map_to_map(char **map, char *map_src, int y)
@@ -98,7 +98,7 @@ int	map_to_map(char **map, char *map_src, int y)
 		new_read = get_next_line(fd);
 	}
 	close(fd);
-	return (1);
+	return (0);
 }
 
 void	get_player_info(t_player_init *i, char **map)
@@ -145,9 +145,14 @@ int	data_init(t_player_init *i, char ***map_src, char *map_file)
 		y--;
 	if (y == -1 || ft_strcmp(&map_file[y], ".cub"))
 		return (1);
-	get_dimensions(map_file, &x, &y);
+	if (get_dimensions(map_file, &x, &y))
+		return (1);
 	malloc_map(&map, y);
-	map_to_map(map, map_file, y);
+	if (map_to_map(map, map_file, y))
+	{
+		ft_free_array(map, y);
+		return (1);
+	}
 	get_player_info(i, map);
 	*map_src = map;
 	if (map_content_check(map))
@@ -157,5 +162,4 @@ int	data_init(t_player_init *i, char ***map_src, char *map_file)
 	}
 	return (0);
 }
-//TODO map is forced path atm
 //TODO free map
