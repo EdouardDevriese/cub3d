@@ -5,9 +5,9 @@
 // for cameraX results in vector of the ray
 void	calc_ray(int x, t_ray *r, t_player *p)
 {
-	r->cameraX = 2 * x / (double)WIN_WIDTH - 1;
-	r->rayDirX = p->dirX + p->planeX * r->cameraX;
-	r->rayDirY = p->dirY + p->planeY * r->cameraX;
+	r->camera_x = 2 * x / (double)WIN_WIDTH - 1;
+	r->raydir_x = p->dir_x + p->plane_x * r->camera_x;
+	r->raydir_y = p->dir_y + p->plane_y * r->camera_x;
 }
 
 // deltaDistX: distance ray has to travel to go from one x-side of map square to
@@ -15,21 +15,21 @@ void	calc_ray(int x, t_ray *r, t_player *p)
 // square to the next
 void	calc_delta_dist(t_ray *r)
 {
-	if (r->rayDirX == 0)
+	if (r->raydir_x == 0)
 	{
-		r->deltaDistX = INFINITY;
+		r->deltadist_x = INFINITY;
 	}
 	else
 	{
-		r->deltaDistX = fabs(1 / r->rayDirX);
+		r->deltadist_x = fabs(1 / r->raydir_x);
 	}
-	if (r->rayDirY == 0)
+	if (r->raydir_y == 0)
 	{
-		r->deltaDistY = INFINITY;
+		r->deltadist_y = INFINITY;
 	}
 	else
 	{
-		r->deltaDistY = fabs(1 / r->rayDirY);
+		r->deltadist_y = fabs(1 / r->raydir_y);
 	}
 }
 
@@ -39,27 +39,27 @@ void	calc_delta_dist(t_ray *r)
 // step: sets possible directions for jump to next square (next step)
 void	calc_side_dist(t_ray *r, t_player p)
 {
-	r->mapX = (int)p.posX;
-	r->mapY = (int)p.posY;
-	if (r->rayDirX < 0)
+	r->map_x = (int)p.pos_x;
+	r->map_y = (int)p.pos_y;
+	if (r->raydir_x < 0)
 	{
-		r->stepX = -1;
-		r->sideDistX = (p.posX - r->mapX) * r->deltaDistX;
+		r->step_x = -1;
+		r->sidedist_x = (p.pos_x - r->map_x) * r->deltadist_x;
 	}
 	else
 	{
-		r->stepX = 1;
-		r->sideDistX = (r->mapX + 1.0 - p.posX) * r->deltaDistX;
+		r->step_x = 1;
+		r->sidedist_x = (r->map_x + 1.0 - p.pos_x) * r->deltadist_x;
 	}
-	if (r->rayDirY < 0)
+	if (r->raydir_y < 0)
 	{
-		r->stepY = -1;
-		r->sideDistY = (p.posY - r->mapY) * r->deltaDistY;
+		r->step_y = -1;
+		r->sidedist_y = (p.pos_y - r->map_y) * r->deltadist_y;
 	}
 	else
 	{
-		r->stepY = 1;
-		r->sideDistY = (r->mapY + 1.0 - p.posY) * r->deltaDistY;
+		r->step_y = 1;
+		r->sidedist_y = (r->map_y + 1.0 - p.pos_y) * r->deltadist_y;
 	}
 }
 
@@ -71,27 +71,27 @@ void	perform_dda(t_ray *r, char **map)
 	r->hit = 0;
 	while (r->hit == 0)
 	{
-		if (r->sideDistX < r->sideDistY)
+		if (r->sidedist_x < r->sidedist_y)
 		{
-			r->sideDistX += r->deltaDistX;
-			r->mapX += r->stepX;
+			r->sidedist_x += r->deltadist_x;
+			r->map_x += r->step_x;
 			r->side = 0;
-			if (r->rayDirX > 0)
+			if (r->raydir_x > 0)
 				r->orientation = WE;
 			else
 				r->orientation = EA;
 		}
 		else
 		{
-			r->sideDistY += r->deltaDistY;
-			r->mapY += r->stepY;
+			r->sidedist_y += r->deltadist_y;
+			r->map_y += r->step_y;
 			r->side = 1;
-			if (r->rayDirY > 0)
+			if (r->raydir_y > 0)
 				r->orientation = SO;
 			else
 				r->orientation = NO;
 		}
-		if (map[r->mapY][r->mapX] == '1')
+		if (map[r->map_y][r->map_x] == '1')
 			r->hit = 1;
 	}
 }
@@ -102,14 +102,14 @@ void	perform_dda(t_ray *r, char **map)
 void	calc_line_to_draw(t_ray *r, t_drawing *d)
 {
 	if (r->side == 0)
-		r->perpWallDist = (r->sideDistX - r->deltaDistX);
+		r->perp_wall_dist = (r->sidedist_x - r->deltadist_x);
 	else
-		r->perpWallDist = (r->sideDistY - r->deltaDistY);
-	d->lineHeight = (int)(WIN_HEIGHT / r->perpWallDist);
-	d->drawStart = -d->lineHeight / 2 + WIN_MID;
-	if (d->drawStart < 0)
-		d->drawStart = 0;
-	d->drawEnd = d->lineHeight / 2 + WIN_MID;
-	if (d->drawEnd >= WIN_HEIGHT)
-		d->drawEnd = WIN_HEIGHT - 1;
+		r->perp_wall_dist = (r->sidedist_y - r->deltadist_y);
+	d->line_height = (int)(WIN_HEIGHT / r->perp_wall_dist);
+	d->draw_start = -d->line_height / 2 + WIN_MID;
+	if (d->draw_start < 0)
+		d->draw_start = 0;
+	d->draw_end = d->line_height / 2 + WIN_MID;
+	if (d->draw_end >= WIN_HEIGHT)
+		d->draw_end = WIN_HEIGHT - 1;
 }

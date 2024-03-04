@@ -8,8 +8,6 @@
 #define TEX_HEIGHT 64
 #define MOVE_SPEED 0.22
 #define ROT_SPEED 0.12
-# define WHITE 0x00FFFFFF
-# define BLACK 0x00000000
 
 #ifndef KEYS_H
 # define KEYS_H
@@ -49,8 +47,8 @@
 typedef enum e_orientation { NO, SO, WE, EA } t_orientation;
 
 typedef struct s_player_init {
-  int posX;
-  int posY;
+  int pos_x;
+  int pos_y;
   t_orientation dir;
 } t_player_init;
 
@@ -61,28 +59,28 @@ typedef struct s_player_init {
 //->plane to dir ratio determines FOV
 // orientation: easier for setup, will determine dir vector
 typedef struct s_player {
-  double posY;
-  double posX;
-  double dirY;
-  double dirX;
-  double planeX;
-  double planeY;
+  double pos_y;
+  double pos_x;
+  double dir_y;
+  double dir_x;
+  double plane_x;
+  double plane_y;
   t_orientation orientation;
 } t_player;
 
 typedef struct s_ray {
-  double cameraX;
-  double rayDirX;
-  double rayDirY;
-  int mapX;
-  int mapY;
-  double sideDistX;
-  double sideDistY;
-  double deltaDistX;
-  double deltaDistY;
-  double perpWallDist;
-  int stepX;
-  int stepY;
+  double camera_x;
+  double raydir_x;
+  double raydir_y;
+  int map_x;
+  int map_y;
+  double sidedist_x;
+  double sidedist_y;
+  double deltadist_x;
+  double deltadist_y;
+  double perp_wall_dist;
+  int step_x;
+  int step_y;
   int hit;
   int side;
   t_orientation orientation;
@@ -101,13 +99,13 @@ typedef struct s_mlx {
 typedef struct s_drawing {
   int x;
   int y;
-  int lineHeight;
-  int drawStart;
-  int drawEnd;
-  double wallX;
-  int texX;
-  int texY;
-  double texPos;
+  int line_height;
+  int draw_start;
+  int draw_end;
+  double wall_x;
+  int tex_x;
+  int tex_y;
+  double tex_pos;
   double step;
   int pixel;
   t_mlx tex[4];
