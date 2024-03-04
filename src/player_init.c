@@ -2,14 +2,14 @@
 
 static void	set_dir(t_player *p, double dirX, double dirY)
 {
-	p->dirX = dirX;
-	p->dirY = dirY;
+	p->dir_x = dirX;
+	p->dir_y = dirY;
 }
 
 static void	set_plane(t_player *p, double planeX, double planeY)
 {
-	p->planeX = planeX;
-	p->planeY = planeY;
+	p->plane_x = planeX;
+	p->plane_y = planeY;
 }
 
 //sets vectors for pos, dir and plane
@@ -18,8 +18,8 @@ static void	set_plane(t_player *p, double planeX, double planeY)
 //	with plane/dir ratio for FOV of 66 degrees
 void	player_init(t_player *p, t_player_init i)
 {
-	p->posX = (double)i.posX;
-	p->posY = (double)i.posY;
+	p->posX = (double)i.pos_x;
+	p->posY = (double)i.pos_y;
 	if (i.dir == NO)
 	{
 		set_dir(p, 0, 1);

@@ -130,8 +130,8 @@ void	get_player_info(t_player_init *i, char **map)
 		if (!result)
 			index++;
 	}
-	i->posY = index;
-	i->posX = result - map[index];
+	i->pos_y = index;
+	i->pos_x = result - map[index];
 }
 //TODO cleaner
 

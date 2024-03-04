@@ -19,13 +19,13 @@ int	get_image(t_drawing *d, char *path, t_orientation dir, void *mlx)
 		printf("Error texture already exists\n");
 		return (0);
 	}
-	d->tex[dir].img = mlx_xpm_file_to_image(mlx, path, &d->texX, &d->texY);
+	d->tex[dir].img = mlx_xpm_file_to_image(mlx, path, &d->tex_x, &d->tex_y);
 	if (!d->tex[dir].img)
 	{
 		printf("Error creating image [%s], in %s\ncreating backup image\n",
 			path, __func__);
 		d->tex[dir].img = mlx_xpm_file_to_image(mlx,
-				"./textures/missing-texture_64x64.xpm", &d->texX, &d->texY);
+				"./textures/missing-texture_64x64.xpm", &d->tex_x, &d->tex_y);
 		if (!d->tex[dir].img)
 			printf("error creating backup image\n");
 	}
