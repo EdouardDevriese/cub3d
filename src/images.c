@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:50:20 by vdenisse          #+#    #+#             */
-/*   Updated: 2024/03/01 10:47:18 by vdenisse         ###   ########.fr       */
+/*   Updated: 2024/03/04 10:02:27 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,18 +77,18 @@ int	get_draw_info_line(char *line, t_drawing *d, void *mlx)
 
 	path = ft_strchr(line, ' ');
 	path = ft_strtrim(path, " \n");
-	if (line[0] == 'N' && get_image(d, path, NO, mlx))
-		return (1);
-	else if (line[0] == 'S' && get_image(d, path, SO, mlx))
-		return (1);
-	else if (line[0] == 'W' && get_image(d, path, WE, mlx))
-		return (1);
-	else if (line[0] == 'E' && get_image(d, path, EA, mlx))
-		return (1);
-	else if (line[0] == 'F' && get_colour(&d->floor, path))
-		return (1);
-	else if (line[0] == 'C' && get_colour(&d->ceiling, path))
-		return (1);
+	if (line[0] == 'N')
+		return (get_image(d, path, NO, mlx));
+	else if (line[0] == 'S')
+		return (get_image(d, path, SO, mlx));
+	else if (line[0] == 'W')
+		return (get_image(d, path, WE, mlx));
+	else if (line[0] == 'E')
+		return (get_image(d, path, EA, mlx));
+	else if (line[0] == 'F')
+		return (get_colour(&d->floor, path));
+	else if (line[0] == 'C')
+		return (get_colour(&d->ceiling, path));
 	else
 		return (1);
 	return (0);
