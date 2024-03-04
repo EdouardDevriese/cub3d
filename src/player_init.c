@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:08:06 by wdevries          #+#    #+#             */
-/*   Updated: 2024/03/04 11:08:08 by wdevries         ###   ########.fr       */
+/*   Updated: 2024/03/04 14:22:07 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static void	set_plane(t_player *p, double planeX, double planeY)
 //	with plane/dir ratio for FOV of 66 degrees
 void	player_init(t_player *p, t_player_init i)
 {
-	p->posX = (double)i.pos_x;
-	p->posY = (double)i.pos_y;
+	p->pos_x = (double)i.pos_x;
+	p->pos_y = (double)i.pos_y;
 	if (i.dir == NO)
 	{
 		set_dir(p, 0, 1);

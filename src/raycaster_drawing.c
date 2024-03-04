@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:08:16 by wdevries          #+#    #+#             */
-/*   Updated: 2024/03/04 11:08:22 by wdevries         ###   ########.fr       */
+/*   Updated: 2024/03/04 14:26:03 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	calc_texture_x(t_ray r, t_player p, t_drawing *d)
 {
 	if (r.side == 0)
-		d->wall_x = p.posY + r.perp_wall_dist * r.raydir_y;
+		d->wall_x = p.pos_y + r.perp_wall_dist * r.raydir_y;
 	else
-		d->wall_x = p.posX + r.perp_wall_dist * r.raydir_x;
+		d->wall_x = p.pos_x + r.perp_wall_dist * r.raydir_x;
 	d->wall_x -= floor(d->wall_x);
-	d->texX = (int)(d->wall_x * (double)TEX_WIDTH);
+	d->tex_x = (int)(d->wall_x * (double)TEX_WIDTH);
 	if (r.side == 0 && r.raydir_x > 0)
 		d->tex_x = TEX_WIDTH - d->tex_x - 1;
 	if (r.side == 1 && r.raydir_y < 0)
@@ -45,7 +45,7 @@ int	get_pixel_from_image(t_mlx tex, int x, int y)
 void	draw_line(t_drawing d, t_ray r, t_mlx *m)
 {
 	d.step = 1.0 * TEX_HEIGHT / d.line_height;
-	d.texPos = (d.drawStart - WIN_MID + d.line_height / 2) * d.step;
+	d.tex_pos = (d.draw_start - WIN_MID + d.line_height / 2) * d.step;
 	d.y = d.draw_start;
 	while (d.y < d.draw_end)
 	{
