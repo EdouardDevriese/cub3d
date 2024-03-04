@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player_movements_wasd.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/04 11:08:46 by wdevries          #+#    #+#             */
+/*   Updated: 2024/03/04 11:17:55 by wdevries         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	move_w(t_player *p, char **map)
@@ -30,30 +42,4 @@ void	move_d(t_player *p, char **map)
 		p->posY += p->plane_y * MOVE_SPEED;
 	if (map[(int)p->posY][(int)(p->posX + p->plane_x * MOVE_SPEED)] == '0')
 		p->posX += p->plane_x * MOVE_SPEED;
-}
-
-void	rot_right(t_player *p)
-{
-	double	oldDirX;
-	double	oldPlaneX;
-
-	oldDirX = p->dir_x;
-	p->dir_x = p->dir_x * cos(ROT_SPEED) - p->dir_y * sin(ROT_SPEED);
-	p->dir_y = oldDirX * sin(ROT_SPEED) + p->dir_y * cos(ROT_SPEED);
-	oldPlaneX = p->plane_x;
-	p->plane_x = p->plane_x * cos(ROT_SPEED) - p->plane_y * sin(ROT_SPEED);
-	p->plane_y = oldPlaneX * sin(ROT_SPEED) + p->plane_y * cos(ROT_SPEED);
-}
-
-void	rot_left(t_player *p)
-{
-	double	oldDirX;
-	double	oldPlaneX;
-
-	oldDirX = p->dir_x;
-	p->dir_x = p->dir_x * cos(-ROT_SPEED) - p->dir_y * sin(-ROT_SPEED);
-	p->dir_y = oldDirX * sin(-ROT_SPEED) + p->dir_y * cos(-ROT_SPEED);
-	oldPlaneX = p->plane_x;
-	p->plane_x = p->plane_x * cos(-ROT_SPEED) - p->plane_y * sin(-ROT_SPEED);
-	p->plane_y = oldPlaneX * sin(-ROT_SPEED) + p->plane_y * cos(-ROT_SPEED);
 }

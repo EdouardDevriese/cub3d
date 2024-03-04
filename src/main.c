@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/04 11:09:59 by wdevries          #+#    #+#             */
+/*   Updated: 2024/03/04 11:13:58 by wdevries         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 #include <stdint.h>
 
-void free_map(char **map)
+void	free_map(char **map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (map[i])
@@ -29,21 +41,23 @@ int	close_window(t_data *data)
 	exit(0);
 }
 
-void	prep_window(t_data *data) {
- data->d.x = 0;
-  while (data->d.x < WIN_WIDTH) {
-    calc_ray(data->d.x, &data->r, &data->p);
-    calc_delta_dist(&data->r);
-    calc_side_dist(&data->r, data->p);
-    perform_dda(&data->r, data->map);
-    calc_line_to_draw(&data->r, &data->d);
-    calc_texture_x(data->r, data->p, &data->d);
-    draw_line(data->d, data->r, &data->m);
-    draw_ceiling_floor(data->d, &data->m);
-
-    data->d.x++;
-  }
-  mlx_put_image_to_window(data->m.mlx_ptr, data->m.win_ptr, data->m.img, 0, 0);
+void	prep_window(t_data *data)
+{
+	data->d.x = 0;
+	while (data->d.x < WIN_WIDTH)
+	{
+		calc_ray(data->d.x, &data->r, &data->p);
+		calc_delta_dist(&data->r);
+		calc_side_dist(&data->r, data->p);
+		perform_dda(&data->r, data->map);
+		calc_line_to_draw(&data->r, &data->d);
+		calc_texture_x(data->r, data->p, &data->d);
+		draw_line(data->d, data->r, &data->m);
+		draw_ceiling_floor(data->d, &data->m);
+		data->d.x++;
+	}
+	mlx_put_image_to_window(data->m.mlx_ptr, data->m.win_ptr, data->m.img, 0,
+		0);
 }
 
 int	key_hook(int keycode, t_data *data)
@@ -64,30 +78,31 @@ int	key_hook(int keycode, t_data *data)
 		rot_right(&data->p);
 	else
 		printf("keycode [%i]\n", keycode);
-  prep_window(data);
+	prep_window(data);
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_data data;
+	t_data	data;
 
 	if (argc != 2 || data_init(&data.i, &data.map, argv[1]))
 		return (printf("Error\n"));
-  player_init(&data.p, data.i);
-  data.m.mlx_ptr = mlx_init();
-  data.m.win_ptr = mlx_new_window(data.m.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "deez cubez");
-  data.m.img = mlx_new_image(data.m.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
-  data.m.addr =
-      mlx_get_data_addr(data.m.img, &data.m.bits_per_pixel, &data.m.line_length, &data.m.endian);
+	player_init(&data.p, data.i);
+	data.m.mlx_ptr = mlx_init();
+	data.m.win_ptr = mlx_new_window(data.m.mlx_ptr, WIN_WIDTH, WIN_HEIGHT,
+			"deez cubez");
+	data.m.img = mlx_new_image(data.m.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+	data.m.addr = mlx_get_data_addr(data.m.img, &data.m.bits_per_pixel,
+			&data.m.line_length, &data.m.endian);
 	if (get_draw_info(&data.d, data.m.mlx_ptr, argv[1]))
 	{
 		printf("Error\n");
 		close_window(&data);
 	}
-  mlx_hook(data.m.win_ptr, 17, 0L, close_window, &data);
-  mlx_key_hook(data.m.win_ptr, key_hook, &data);
-  prep_window(&data);
-   mlx_loop(data.m.mlx_ptr);
-  return 0;
+	mlx_hook(data.m.win_ptr, 17, 0L, close_window, &data);
+	mlx_key_hook(data.m.win_ptr, key_hook, &data);
+	prep_window(&data);
+	mlx_loop(data.m.mlx_ptr);
+	return (0);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/04 11:09:04 by wdevries          #+#    #+#             */
+/*   Updated: 2024/03/04 11:25:09 by wdevries         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 #include <stdbool.h>
 
@@ -46,7 +58,7 @@ int	get_dimensions(char *map_src, int *x, int *y)
 		return (1);
 	while (new_read != NULL)
 	{
-		if (ft_strlen(new_read) > (size_t)*x)
+		if (ft_strlen(new_read) > (size_t)(*x))
 			*x = ft_strlen(new_read);
 		(*y)++;
 		free(new_read);

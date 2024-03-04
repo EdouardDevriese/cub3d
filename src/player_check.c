@@ -16,9 +16,10 @@ int	check_player_amount(char **map)
 {
 	int			y;
 	int			x;
-	static char	player[4] = "NSEW";
+	static char	player[4];
 	int			found;
 
+	player[4] = "NSEW";
 	found = 0;
 	y = 0;
 	while (map[y])
@@ -41,9 +42,10 @@ int	check_player_pos(char **map)
 {
 	int			y;
 	int			x;
-	static char	player[4] = "NSEW";
+	static char	player[4];
 	int			found;
 
+	player[4] = "NSEW";
 	found = 0;
 	y = 0;
 	while (map[y])
