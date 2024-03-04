@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:50:20 by vdenisse          #+#    #+#             */
-/*   Updated: 2024/03/04 10:02:27 by vdenisse         ###   ########.fr       */
+/*   Updated: 2024/03/04 10:58:51 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,19 @@ int	get_image(t_drawing *d, char *path, t_orientation dir, void *mlx)
 		return (0);
 	}
 	d->tex[dir].img = mlx_xpm_file_to_image(mlx, path, &d->tex_x, &d->tex_y);
-		return (1);
+	return (1);
 	if (!d->tex[dir].img)
+	{
 		d->tex[dir].img = mlx_xpm_file_to_image(mlx,
-				"./textures/missing-texture_64x64.xpm", &d->tex_x, &d->tex_y);
+				"./textures/missing-texture_64x64.xpm",
+				&d->tex_x,
+				&d->tex_y);
 		if (!d->tex[dir].img)
 			printf("error creating backup image\n");
 	}
 	d->tex[dir].addr = mlx_get_data_addr(d->tex[dir].img,
-			&d->tex[dir].bits_per_pixel, &d->tex[dir].line_length,
+			&d->tex[dir].bits_per_pixel,
+			&d->tex[dir].line_length,
 			&d->tex[dir].endian);
 	if (path)
 		free(path);
