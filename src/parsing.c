@@ -132,6 +132,7 @@ void	get_player_info(t_player_init *i, char **map)
 	}
 	i->pos_y = index;
 	i->pos_x = result - map[index];
+	map[i->pos_y][i->pos_x] = '0';
 }
 //TODO cleaner
 
