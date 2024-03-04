@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycaster_prep.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/04 11:09:29 by wdevries          #+#    #+#             */
+/*   Updated: 2024/03/04 11:22:48 by wdevries         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 // cameraX: x coordinate on plane that represents current x on window (left =
@@ -60,39 +72,6 @@ void	calc_side_dist(t_ray *r, t_player p)
 	{
 		r->step_y = 1;
 		r->sidedist_y = (r->map_y + 1.0 - p.pos_y) * r->deltadist_y;
-	}
-}
-
-// jump to the next square border in the ray's path
-// determine how this border is orientated (NO, EA, SO, WE)
-// check if square is full or empty
-void	perform_dda(t_ray *r, char **map)
-{
-	r->hit = 0;
-	while (r->hit == 0)
-	{
-		if (r->sidedist_x < r->sidedist_y)
-		{
-			r->sidedist_x += r->deltadist_x;
-			r->map_x += r->step_x;
-			r->side = 0;
-			if (r->raydir_x > 0)
-				r->orientation = WE;
-			else
-				r->orientation = EA;
-		}
-		else
-		{
-			r->sidedist_y += r->deltadist_y;
-			r->map_y += r->step_y;
-			r->side = 1;
-			if (r->raydir_y > 0)
-				r->orientation = SO;
-			else
-				r->orientation = NO;
-		}
-		if (map[r->map_y][r->map_x] == '1')
-			r->hit = 1;
 	}
 }
 

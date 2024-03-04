@@ -93,8 +93,7 @@ int	check_map_content(char **map)
 int	map_content_check(char **map)
 {
 	return (check_player_amount(map) || check_map_content(map)
-		|| check_player_pos(map)
-		|| map_border_check(map));
+		|| check_player_pos(map) || map_border_check(map));
 }
 //TODO check if exactly 1 player is present
 //TODO walls
