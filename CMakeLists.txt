@@ -25,6 +25,27 @@ add_executable(cub3D ${MyCSources})
 
 
 
+
+# Call the Makefile in the libft directory
+add_custom_target(libft_make ALL
+    COMMAND ${CMAKE_MAKE_PROGRAM}
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/libft
+)
+
+
+add_custom_target(mlx ALL
+    COMMAND ${CMAKE_MAKE_PROGRAM}
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/mlx_linux
+)
+
+# Make sure your executable depends on the libft make target
+add_dependencies(cub3D libft_make mlx)
+
+
+
+
+
+
 #add libft.a
 target_link_libraries(cub3D PRIVATE ${CMAKE_SOURCE_DIR}/libft/libft.a ${CMAKE_SOURCE_DIR}/mlx_linux/libmlx_Linux.a)
 

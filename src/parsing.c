@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:09:04 by wdevries          #+#    #+#             */
-/*   Updated: 2024/03/04 11:56:35 by vdenisse         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:43:26 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,12 +115,12 @@ int	data_init(t_player_init *i, char ***map_src, char *map_file)
 		ft_free_array(map, y);
 		return (1);
 	}
-	get_player_info(i, map);
 	*map_src = map;
 	if (map_content_check(map))
 	{
 		ft_free_array(map, y);
 		return (1);
 	}
+	get_player_info(i, map);
 	return (0);
 }
