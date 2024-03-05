@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:08:30 by wdevries          #+#    #+#             */
-/*   Updated: 2024/03/05 13:56:23 by wdevries         ###   ########.fr       */
+/*   Updated: 2024/03/05 15:12:50 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define WIN_HEIGHT 1080
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
-# define MOVE_SPEED 0.22
+# define MOVE_SPEED 0.27
 # define ROT_SPEED 0.12
 
 # ifndef KEYS_H
