@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:08:06 by wdevries          #+#    #+#             */
-/*   Updated: 2024/03/05 15:11:02 by vdenisse         ###   ########.fr       */
+/*   Updated: 2024/03/05 15:18:54 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,22 @@ void	player_init(t_player *p, t_player_init i)
 {
 	p->pos_x = (double)i.pos_x + 0.5;
 	p->pos_y = (double)i.pos_y + 0.5;
-	if (i.dir == NO)
+	if (i.dir == SO)
 	{
 		set_dir(p, 0, 1);
 		set_plane(p, 0.66, 0);
 	}
-	else if (i.dir == EA)
+	else if (i.dir == WE)
 	{
 		set_dir(p, 1, 0);
 		set_plane(p, 0, -0.66);
 	}
-	else if (i.dir == SO)
+	else if (i.dir == NO)
 	{
 		set_dir(p, 0, -1);
 		set_plane(p, -0.66, 0);
 	}
-	else if (i.dir == WE)
+	else if (i.dir == EA)
 	{
 		set_dir(p, -1, 0);
 		set_plane(p, 0, 0.66);
