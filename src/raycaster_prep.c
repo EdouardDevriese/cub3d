@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:09:29 by wdevries          #+#    #+#             */
-/*   Updated: 2024/03/04 15:00:02 by wdevries         ###   ########.fr       */
+/*   Updated: 2024/03/05 14:32:26 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,14 @@ void	calc_line_to_draw(t_ray *r, t_drawing *d)
 		r->perp_wall_dist = (r->sidedist_x - r->deltadist_x);
 	else
 		r->perp_wall_dist = (r->sidedist_y - r->deltadist_y);
-	d->line_height = (int)(WIN_HEIGHT / r->perp_wall_dist);
-	d->draw_start = -d->line_height / 2 + WIN_MID;
+	if (r->perp_wall_dist == 0)
+		d->line_height = INFINITY;
+	else
+		d->line_height = (int)(WIN_HEIGHT / r->perp_wall_dist);
+	d->draw_start = -d->line_height / 2 + WIN_HEIGHT / 2;
 	if (d->draw_start < 0)
 		d->draw_start = 0;
-	d->draw_end = d->line_height / 2 + WIN_MID;
+	d->draw_end = d->line_height / 2 + WIN_HEIGHT / 2;
 	if (d->draw_end >= WIN_HEIGHT)
 		d->draw_end = WIN_HEIGHT - 1;
 }

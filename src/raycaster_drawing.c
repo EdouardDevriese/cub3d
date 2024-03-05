@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:08:16 by wdevries          #+#    #+#             */
-/*   Updated: 2024/03/04 14:26:03 by wdevries         ###   ########.fr       */
+/*   Updated: 2024/03/05 14:08:21 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	get_pixel_from_image(t_mlx tex, int x, int y)
 void	draw_line(t_drawing d, t_ray r, t_mlx *m)
 {
 	d.step = 1.0 * TEX_HEIGHT / d.line_height;
-	d.tex_pos = (d.draw_start - WIN_MID + d.line_height / 2) * d.step;
+	d.tex_pos = (d.draw_start - WIN_HEIGHT / 2 + d.line_height / 2) * d.step;
 	d.y = d.draw_start;
 	while (d.y < d.draw_end)
 	{
@@ -60,9 +60,9 @@ void	draw_line(t_drawing d, t_ray r, t_mlx *m)
 void	draw_ceiling_floor(t_drawing d, t_mlx *m)
 {
 	d.y = 0;
-	while (d.y < d.draw_start && d.y < WIN_MID)
+	while (d.y < d.draw_start && d.y < WIN_HEIGHT / 2)
 		my_mlx_pixel_put(m, d.x, (d.y)++, d.floor);
 	d.y = d.draw_end;
-	while (d.y < WIN_HEIGHT)
+	while (d.y < WIN_HEIGHT - 1)
 		my_mlx_pixel_put(m, d.x, (d.y)++, d.ceiling);
 }
