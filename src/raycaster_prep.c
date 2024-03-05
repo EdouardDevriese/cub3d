@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:09:29 by wdevries          #+#    #+#             */
-/*   Updated: 2024/03/05 14:32:26 by wdevries         ###   ########.fr       */
+/*   Updated: 2024/03/05 16:03:42 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,18 @@ void	calc_line_to_draw(t_ray *r, t_drawing *d)
 	d->draw_end = d->line_height / 2 + WIN_HEIGHT / 2;
 	if (d->draw_end >= WIN_HEIGHT)
 		d->draw_end = WIN_HEIGHT - 1;
+}
+
+void	calc_texture_x(t_ray r, t_player p, t_drawing *d)
+{
+	if (r.side == 0)
+		d->wall_x = p.pos_y + r.perp_wall_dist * r.raydir_y;
+	else
+		d->wall_x = p.pos_x + r.perp_wall_dist * r.raydir_x;
+	d->wall_x -= floor(d->wall_x);
+	d->tex_x = (int)(d->wall_x * (double)TEX_WIDTH);
+	if (r.side == 0 && r.raydir_x > 0)
+		d->tex_x = TEX_WIDTH - d->tex_x - 1;
+	if (r.side == 1 && r.raydir_y < 0)
+		d->tex_x = TEX_WIDTH - d->tex_x - 1;
 }
