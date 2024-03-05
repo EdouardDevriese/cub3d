@@ -54,6 +54,7 @@ target_link_libraries(cub3D PRIVATE ${CMAKE_SOURCE_DIR}/libft/libft.a ${CMAKE_SO
 # Add extra targets
 add_custom_target(re
 	COMMAND make clean
+	COMMAND make fclean
 	COMMAND  make
 	VERBATIM
 )
@@ -63,5 +64,7 @@ add_custom_target(re
 add_custom_target(fclean
 	COMMAND ${CMAKE_COMMAND} -E echo "Cleaning..."
 	COMMAND make clean
+	COMMAND ${CMAKE_MAKE_PROGRAM} clean
+	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/libft
 	VERBATIM
 	)
