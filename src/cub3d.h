@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:08:30 by wdevries          #+#    #+#             */
-/*   Updated: 2024/03/04 14:59:23 by wdevries         ###   ########.fr       */
+/*   Updated: 2024/03/05 13:53:37 by wdevries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
-# define WIN_MID 240
+# define WIN_MID 540
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
 # define MOVE_SPEED 0.22
