@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   images.c                                           :+:      :+:    :+:   */
+/*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:50:20 by vdenisse          #+#    #+#             */
-/*   Updated: 2024/03/04 11:14:40 by wdevries         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:23:40 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	get_image(t_drawing *d, char *path, t_orientation dir, void *mlx)
+int	get_image(t_drawing *d, char *path, t_orientation dir, void *mlx, bool *b)
 {
 	if (d->tex[dir].img)
 		return (1);
@@ -25,6 +25,9 @@ int	get_image(t_drawing *d, char *path, t_orientation dir, void *mlx)
 			&d->tex[dir].endian);
 	if (path)
 		free(path);
+	if (*b)
+		return (1);
+	*b = true;
 	return (0);
 }
 
@@ -52,7 +55,7 @@ int	check_rgb(char **rgb_strs)
 	return (0);
 }
 
-int	get_colour(int32_t *colour, char *rgb)
+int	get_colour(int32_t *colour, char *rgb, bool *b)
 {
 	int32_t	rgb_int;
 	char	**rgb_strs;
@@ -68,30 +71,48 @@ int	get_colour(int32_t *colour, char *rgb)
 	ft_free_array(rgb_strs, 3);
 	if (rgb)
 		free(rgb);
+	if (*b)
+		return (1);
+	*b = true;
 	return (0);
 }
 
-int	get_draw_info_line(char *line, t_drawing *d, void *mlx)
+int	get_draw_info_line(char *line, t_drawing *d, void *mlx, t_check *check)
 {
 	char	*path;
 
 	path = ft_strchr(line, ' ');
 	path = ft_strtrim(path, " \n");
-	if (line[0] == 'N')
-		return (get_image(d, path, NO, mlx));
-	else if (line[0] == 'S')
-		return (get_image(d, path, SO, mlx));
-	else if (line[0] == 'W')
-		return (get_image(d, path, WE, mlx));
-	else if (line[0] == 'E')
-		return (get_image(d, path, EA, mlx));
-	else if (line[0] == 'F')
-		return (get_colour(&d->floor, path));
-	else if (line[0] == 'C')
-		return (get_colour(&d->ceiling, path));
+	if (!ft_strncmp("NO ", line, 3))
+		return (get_image(d, path, NO, mlx, &check->no));
+	else if (!ft_strncmp("SO ", line, 3))
+		return (get_image(d, path, SO, mlx, &check->so));
+	else if (!ft_strncmp("WE ", line, 3))
+		return (get_image(d, path, WE, mlx, &check->we));
+	else if (!ft_strncmp("EA ", line, 3))
+		return (get_image(d, path, EA, mlx, &check->ea));
+	else if (!ft_strncmp("F ", line, 2))
+		return (get_colour(&d->floor, path, &check->f));
+	else if (!ft_strncmp("C ", line, 2))
+		return (get_colour(&d->ceiling, path, &check->c));
 	else
+	{
+		free(path);
 		return (1);
+	}
 	return (0);
+}
+
+t_check check_init(void)
+{
+	t_check check;
+	check.no = false;
+	check.so = false;
+	check.ea = false;
+	check.we = false;
+	check.c = false;
+	check.f = false;
+	return (check);
 }
 
 int	get_draw_info(t_drawing *d, void *mlx, char *map_file)
@@ -99,18 +120,24 @@ int	get_draw_info(t_drawing *d, void *mlx, char *map_file)
 	int		fd;
 	char	*new_line;
 	int		status;
+	t_check check;
+	int	in_map;
 
+	check = check_init();
 	fd = open(map_file, O_RDONLY);
 	new_line = get_next_line(fd);
 	set_drawing_to_null(d);
 	status = 0;
+	in_map = 0;
 	while (new_line)
 	{
-		if (!is_map(new_line) && *new_line != '\n')
-			if (!status && get_draw_info_line(new_line, d, mlx))
+		if (is_map(new_line))
+			in_map = 1;
+		if (!in_map && *new_line != '\n')
+			if (!status && get_draw_info_line(new_line, d, mlx, &check))
 				status = 1;
 		free(new_line);
 		new_line = get_next_line(fd);
 	}
-	return (check_info(d));
+	return (status || check_info(check));
 }

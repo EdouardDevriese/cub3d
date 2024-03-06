@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:50:26 by vdenisse          #+#    #+#             */
-/*   Updated: 2024/02/29 14:50:31 by vdenisse         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:03:22 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,19 @@ int32_t	rgb_to_int(int r, int g, int b)
 	return ((r << 16) | (g << 8) | b);
 }
 
-int	check_info(t_drawing *d)
+int	check_info(t_check check)
 {
-	if (!d->tex[NO].img)
+	if (!check.no)
 		return (1);
-	if (!d->tex[SO].img)
+	if (!check.so)
 		return (1);
-	if (!d->tex[EA].img)
+	if (!check.ea)
 		return (1);
-	if (!d->tex[WE].img)
+	if (!check.we)
+		return (1);
+	if (!check.f)
+		return (1);
+	if (!check.c)
 		return (1);
 	return (0);
 }

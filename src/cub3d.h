@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:08:30 by wdevries          #+#    #+#             */
-/*   Updated: 2024/03/05 13:56:23 by wdevries         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:04:09 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,16 @@ typedef enum e_orientation
 	WE,
 	EA
 }					t_orientation;
+
+typedef struct s_check{
+	bool no;
+	bool so;
+	bool ea;
+	bool we;
+	bool f;
+	bool c;
+
+}			t_check;
 
 typedef struct s_player_init
 {
@@ -167,7 +177,7 @@ int					data_init(t_player_init *i, char ***map, char *map_file);
 int					map_content_check(char **map);
 int					get_dimensions(char *map_src, int *x, int *y);
 void				set_drawing_to_null(t_drawing *d);
-int					check_info(t_drawing *d);
+int					check_info(t_check check);
 int32_t				rgb_to_int(int r, int g, int b);
 int					check_player_amount(char **map);
 int					check_player_pos(char **map);

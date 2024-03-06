@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 15:18:00 by vdenisse          #+#    #+#             */
-/*   Updated: 2024/02/29 15:39:15 by vdenisse         ###   ########.fr       */
+/*   Updated: 2024/03/06 14:54:25 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	check_tile(char **map, int y, int x)
 {
 	if (x == 0 || y == 0)
 		return (1);
-	if (!map[y][x + 1] || map[y][x + 1] == ' ')
+	if (!map[y][x + 1] || map[y][x + 1] == ' ' || map[y][x + 1] == '\n')
 		return (1);
-	if (!map[y + 1][x] || map[y + 1][x] == ' ')
+	if (!map[y + 1] || !map[y + 1][x] || map[y + 1][x] == ' ')
 		return (1);
 	if (!map[y - 1][x] || map[y - 1][x] == ' ')
 		return (1);
