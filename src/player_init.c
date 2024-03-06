@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   player_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/04 11:08:06 by wdevries          #+#    #+#             */
-/*   Updated: 2024/03/06 15:37:16 by vdenisse         ###   ########.fr       */
+/*   Created: 2024/03/06 15:38:17 by vdenisse          #+#    #+#             */
+/*   Updated: 2024/03/06 15:38:19 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "cub3d.h"
 
@@ -37,7 +38,7 @@ void	player_init(t_player *p, t_player_init i)
 		set_dir(p, 0, 1);
 		set_plane(p, 0.66, 0);
 	}
-	else if (i.dir == EA)
+	else if (i.dir == WE)
 	{
 		set_dir(p, 1, 0);
 		set_plane(p, 0, -0.66);
@@ -47,7 +48,7 @@ void	player_init(t_player *p, t_player_init i)
 		set_dir(p, 0, -1);
 		set_plane(p, -0.66, 0);
 	}
-	else if (i.dir == WE)
+	else if (i.dir == EA)
 	{
 		set_dir(p, -1, 0);
 		set_plane(p, 0, 0.66);

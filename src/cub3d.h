@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/04 11:08:30 by wdevries          #+#    #+#             */
-/*   Updated: 2024/03/06 15:04:09 by vdenisse         ###   ########.fr       */
+/*   Created: 2024/03/06 15:38:35 by vdenisse          #+#    #+#             */
+/*   Updated: 2024/03/06 15:38:36 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -17,7 +18,7 @@
 # define WIN_HEIGHT 1080
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
-# define MOVE_SPEED 0.22
+# define MOVE_SPEED 0.27
 # define ROT_SPEED 0.12
 
 # ifndef KEYS_H
