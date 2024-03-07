@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:38:17 by vdenisse          #+#    #+#             */
-/*   Updated: 2024/03/06 15:38:19 by vdenisse         ###   ########.fr       */
+/*   Updated: 2024/03/07 13:48:21 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,22 @@ void	player_init(t_player *p, t_player_init i)
 	if (i.dir == SO)
 	{
 		set_dir(p, 0, 1);
-		set_plane(p, 0.66, 0);
-	}
-	else if (i.dir == WE)
-	{
-		set_dir(p, 1, 0);
-		set_plane(p, 0, -0.66);
-	}
-	else if (i.dir == NO)
-	{
-		set_dir(p, 0, -1);
 		set_plane(p, -0.66, 0);
 	}
 	else if (i.dir == EA)
 	{
-		set_dir(p, -1, 0);
+		set_dir(p, 1, 0);
 		set_plane(p, 0, 0.66);
+	}
+	else if (i.dir == NO)
+	{
+		set_dir(p, 0, -1);
+		set_plane(p, 0.66, 0);
+	}
+	else if (i.dir == WE)
+	{
+		set_dir(p, -1, 0);
+		set_plane(p, 0, -0.66);
 	}
 }
 //TODO Directions

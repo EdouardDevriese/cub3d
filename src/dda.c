@@ -6,7 +6,7 @@
 /*   By: wdevries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:21:54 by wdevries          #+#    #+#             */
-/*   Updated: 2024/03/04 11:23:02 by wdevries         ###   ########.fr       */
+/*   Updated: 2024/03/07 12:52:52 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	jump_y(t_ray *r)
 	r->map_y += r->step_y;
 	r->side = 1;
 	if (r->raydir_y > 0)
-		r->orientation = SO;
-	else
 		r->orientation = NO;
+	else
+		r->orientation = SO;
 }
 
 // jump to the next square border in the ray's path
