@@ -6,17 +6,18 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:50:20 by vdenisse          #+#    #+#             */
-/*   Updated: 2024/03/06 15:23:40 by vdenisse         ###   ########.fr       */
+/*   Updated: 2024/03/07 10:03:13 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	get_image(t_drawing *d, char *path, t_orientation dir, void *mlx, bool *b)
+int	get_image(t_drawing *d, char *path, t_orientation dir, bool *b)
 {
 	if (d->tex[dir].img)
 		return (1);
-	d->tex[dir].img = mlx_xpm_file_to_image(mlx, path, &d->tex_x, &d->tex_y);
+	d->tex[dir].img = mlx_xpm_file_to_image(d->tex[dir].mlx_ptr,
+			path, &d->tex_x, &d->tex_y);
 	if (!d->tex[dir].img)
 		return (1);
 	d->tex[dir].addr = mlx_get_data_addr(d->tex[dir].img,
@@ -77,20 +78,20 @@ int	get_colour(int32_t *colour, char *rgb, bool *b)
 	return (0);
 }
 
-int	get_draw_info_line(char *line, t_drawing *d, void *mlx, t_check *check)
+int	get_draw_info_line(char *line, t_drawing *d, t_check *check)
 {
 	char	*path;
 
 	path = ft_strchr(line, ' ');
 	path = ft_strtrim(path, " \n");
 	if (!ft_strncmp("NO ", line, 3))
-		return (get_image(d, path, NO, mlx, &check->no));
+		return (get_image(d, path, NO, &check->no));
 	else if (!ft_strncmp("SO ", line, 3))
-		return (get_image(d, path, SO, mlx, &check->so));
+		return (get_image(d, path, SO, &check->so));
 	else if (!ft_strncmp("WE ", line, 3))
-		return (get_image(d, path, WE, mlx, &check->we));
+		return (get_image(d, path, WE, &check->we));
 	else if (!ft_strncmp("EA ", line, 3))
-		return (get_image(d, path, EA, mlx, &check->ea));
+		return (get_image(d, path, EA, &check->ea));
 	else if (!ft_strncmp("F ", line, 2))
 		return (get_colour(&d->floor, path, &check->f));
 	else if (!ft_strncmp("C ", line, 2))
@@ -103,26 +104,15 @@ int	get_draw_info_line(char *line, t_drawing *d, void *mlx, t_check *check)
 	return (0);
 }
 
-t_check check_init(void)
-{
-	t_check check;
-	check.no = false;
-	check.so = false;
-	check.ea = false;
-	check.we = false;
-	check.c = false;
-	check.f = false;
-	return (check);
-}
-
 int	get_draw_info(t_drawing *d, void *mlx, char *map_file)
 {
 	int		fd;
 	char	*new_line;
 	int		status;
-	t_check check;
-	int	in_map;
+	t_check	check;
+	int		in_map;
 
+	mlx_to_tex(d, mlx);
 	check = check_init();
 	fd = open(map_file, O_RDONLY);
 	new_line = get_next_line(fd);
@@ -134,7 +124,7 @@ int	get_draw_info(t_drawing *d, void *mlx, char *map_file)
 		if (is_map(new_line))
 			in_map = 1;
 		if (!in_map && *new_line != '\n')
-			if (!status && get_draw_info_line(new_line, d, mlx, &check))
+			if (!status && get_draw_info_line(new_line, d, &check))
 				status = 1;
 		free(new_line);
 		new_line = get_next_line(fd);

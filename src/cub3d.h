@@ -6,10 +6,9 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:38:35 by vdenisse          #+#    #+#             */
-/*   Updated: 2024/03/06 15:38:36 by vdenisse         ###   ########.fr       */
+/*   Updated: 2024/03/07 10:03:00 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -53,8 +52,8 @@
 # include "../libft/inc/libft.h"
 # include "../mlx_linux/mlx.h"
 # include <math.h>
-# include <stdint.h>
 # include <stdbool.h>
+# include <stdint.h>
 
 typedef enum e_orientation
 {
@@ -64,15 +63,16 @@ typedef enum e_orientation
 	EA
 }					t_orientation;
 
-typedef struct s_check{
-	bool no;
-	bool so;
-	bool ea;
-	bool we;
-	bool f;
-	bool c;
+typedef struct s_check
+{
+	bool			no;
+	bool			so;
+	bool			ea;
+	bool			we;
+	bool			f;
+	bool			c;
 
-}			t_check;
+}					t_check;
 
 typedef struct s_player_init
 {
@@ -184,5 +184,7 @@ int					check_player_amount(char **map);
 int					check_player_pos(char **map);
 int					check_tile(char **map, int y, int x);
 void				get_player_info(t_player_init *i, char **map);
+t_check				check_init(void);
+void				mlx_to_tex(t_drawing *d, void *mlx);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: vdenisse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 14:50:26 by vdenisse          #+#    #+#             */
-/*   Updated: 2024/03/06 15:03:22 by vdenisse         ###   ########.fr       */
+/*   Updated: 2024/03/07 09:59:10 by vdenisse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,27 @@ int	check_info(t_check check)
 	if (!check.c)
 		return (1);
 	return (0);
+}
+
+void	mlx_to_tex(t_drawing *d, void *mlx)
+{
+	d->tex[NO].mlx_ptr = mlx;
+	d->tex[SO].mlx_ptr = mlx;
+	d->tex[EA].mlx_ptr = mlx;
+	d->tex[WE].mlx_ptr = mlx;
+}
+
+t_check	check_init(void)
+{
+	t_check	check;
+
+	check.no = false;
+	check.so = false;
+	check.ea = false;
+	check.we = false;
+	check.c = false;
+	check.f = false;
+	return (check);
 }
 
 void	set_drawing_to_null(t_drawing *d)
